@@ -1,0 +1,13 @@
+
+{"pageNumber":0,"pageSize":10,"sort":{"empty":false,"sorted":true,"unsorted":false},"offset":0,"paged":true,"unpaged":false},"last":false,"totalPages":2,"totalElements":16,"first":true,"size":10,"number":0,"sort":{"empty":false,"sorted":true,"unsorted":false},"numberOfElements":10,"empty":false}
+
+
+
+int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
+        int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
+		
+		
+		      var startPage = (((Number)(Math.ceil(Number(page) / response.data.totalPages))) - 1) * response.data.pageable.pageSize + 1;
+
+
+        var endPage = ((startPage + page - 1) < response.data.pageable.totalPages) ? startPage + response.data.pageable.totalPages - 1 : response.data.pageable.totalPages;
