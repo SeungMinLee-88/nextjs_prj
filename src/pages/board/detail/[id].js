@@ -127,7 +127,7 @@ export async function getStaticPaths() {
         id: item.id.toString(),
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -139,12 +139,14 @@ export async function getStaticProps(context) {
 /*   const res = (setTimeout(() => {
     Axios.get(apiUrl);
   }, 10000)); */
-  const res = await Axios.get(apiUrl);
-/*   const res = await Promise.all([
+/*   const res = await Axios.get(apiUrl); */
+  const res = await Promise.all([
     Axios.get(apiUrl),
     timeout(5000)
-  ]); */
+  ]);
+
   const data = res.data;
+
   return {
     props: {
       board: data,

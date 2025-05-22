@@ -26,7 +26,8 @@ useEffect(() => {
 
 
   const router = useRouter();
-  
+  const fileInputRef1 = useRef();
+  const fileFormRef1 = React.createRef();
   
   if (router.isFallback) {
     return (
@@ -164,8 +165,7 @@ useEffect(() => {
     
       };
 
-    const fileInputRef1 = useRef();
-    const fileFormRef1 = React.createRef();
+
     
     
   return (

@@ -12,7 +12,7 @@ class MyDocument extends Document {
 {/*<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
   integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
   crossOrigin="anonymous" referrerPolicy="no-referrer"></script> */}
-<title>Next.JS</title>
+<Head>Next.JS</Head>
 <meta charSet="utf-8"></meta>
         </Head>
         <body>
