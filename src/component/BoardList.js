@@ -101,10 +101,8 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
           <div style={{display: 'flex',  justifyContent:'center'}}>
           <h1 className="ui header">There is no Contents</h1>
           </div>
-        
           }
-        
-        
+ 
         {/* https://ko.react.dev/learn/javascript-in-jsx-with-curly-braces */}
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
         <Pagination

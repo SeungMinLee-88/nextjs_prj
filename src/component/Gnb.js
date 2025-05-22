@@ -13,7 +13,6 @@ export default function Gnb() {
   } else if (router.pathname === "/admin") {
     activeItem = "admin";
   }
-
   function goLink(e, data) {
     if (data.name === "home") {
       router.push("/");
@@ -21,7 +20,6 @@ export default function Gnb() {
       router.push("/about");
     }
   }
-
   return (
     <Menu inverted>
       <Menu.Item name="home" active={activeItem === "home"} onClick={goLink} />
@@ -46,14 +44,6 @@ export default function Gnb() {
           router.push("/ManagerUser");
         }}
       />
-      
-{/*       <Menu.Item
-        name="login"
-        active={activeItem === "login"}
-        onClick={() => {
-          router.push("/login");
-        }}
-      /> */}
     </Menu>
   );
 }
