@@ -313,7 +313,7 @@ return retRootId;
           <Form onSubmit={addFormSubmit} reply>
           <FormField name='commentContents' label='Comments' as="" control='textarea' rows='3' />
           <button type="submit" className="ui icon primary left labeled button" color="blue">
-          <i aria-hidden="true" class="edit icon"></i>
+          <i aria-hidden="true" className="edit icon"></i>
           Add Comment
         </button>
         </Form>

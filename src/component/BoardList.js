@@ -39,15 +39,7 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
   const router = useRouter();
   
   const goToPage = pageNumber => {
-    //setPaginationOptions({ ...paginationOptions, activePage: pageNumber });
-    console.log("pageNumber : " + pageNumber);
     changePage(pageNumber);
-    /* setActivePageData(2
-      orderedData.slice(
-        (pageNumber - 1) * itemPerPage,
-        pageNumber * itemPerPage
-      )
-    ); */
   };
   const timeoutRef = React.useRef()
   const handleSearchChange = (e, data) => {
