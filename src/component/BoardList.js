@@ -33,9 +33,9 @@ const initialState = {
   results: [],
   value: '',
 }
-export default function BoardList({ boardList, currentPage, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue, searchKey, startPage, endPage }) {
-  const [state, dispatch] = React.useReducer(exampleReducer, initialState)
-  const { loading, results, value } = state
+export default function BoardList({ boardList, currentPage, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue, searchKey }) {
+  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
+  const { loading, results, value } = state;
   const router = useRouter();
   
   const goToPage = pageNumber => {
@@ -43,29 +43,21 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
   };
   const timeoutRef = React.useRef()
   const handleSearchChange = (e, data) => {
-    console.log("data.value : " + data.value);
     clearTimeout(timeoutRef.current)
     dispatch({ type: 'START_SEARCH', query: data.value })
-    console.log("results : " + results);
     changeSearchValue(data.value);
     setCurrentPage(1);
-
     timeoutRef.current = setTimeout(() => {
       if (data.value.length === 0) {
         dispatch({ type: 'CLEAN_QUERY' })
         return
       }
-      const re = new RegExp(_.escapeRegExp(data.value), 'i')
-      const isMatch = (result) => re.test(result.title)
-
       dispatch({
         type: 'FINISH_SEARCH',
       })
     }, 300)
   }
 
-
-  
   return (
     <div>
       <div style={{display: 'flex',  justifyContent:'right', alignItems:'right'}}>
@@ -119,7 +111,6 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
           
         />
         </div>
-
     </div>
   );
 }

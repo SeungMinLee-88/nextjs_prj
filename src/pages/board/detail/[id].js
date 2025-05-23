@@ -1,7 +1,6 @@
 
 import Axios from "axios";
 import { useRouter } from "next/navigation";
-import { Link } from "next/link";
 import { Loader
 , Container
 , Divider
@@ -20,14 +19,12 @@ export default function BoardDetail({ board, id }) {
   const userId = useContext(UserIdContext);
 
 useEffect(() => {
-/*   if(board["fileAttached"] === 1){
+  if(board["fileAttached"] === 1){
       setFileList(board["boardFileDTO"]);
       setImageFileList(fileList.filter(a => a.mimeType === "image"));
-    } */
+    }
 }, [fileList]);
 
-console.log("board : " + JSON.stringify(board))
-console.log("router.isFallback : " + router.isFallback)
   if (router.isFallback) {
     return (
       <div style={{ padding: "100px 0" }}>
@@ -127,24 +124,14 @@ export async function getStaticPaths() {
         id: item.id.toString(),
       },
     })),
-    fallback: true,
+    fallback: false,
   };
 }
 
 export async function getStaticProps(context) {
-  
-  console.log("call getStaticProps");
   const id = context.params.id;
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/detail/${id}`;
-/*   const res = (setTimeout(() => {
-    Axios.get(apiUrl);
-  }, 10000)); */
-/*   const res = await Axios.get(apiUrl); */
-  const res = await Promise.all([
-    Axios.get(apiUrl),
-    timeout(5000)
-  ]);
-
+  const res = await Axios.get(apiUrl);
   const data = res.data;
 
   return {
@@ -155,7 +142,5 @@ export async function getStaticProps(context) {
     },
   };
   
-  function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+
 }

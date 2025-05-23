@@ -5,7 +5,7 @@ const nextConfig = {
     
   },
   module: {
-    reactStrictMode: true,
+    reactStrictMode: false,
     ignoreBuildErrors: true,
   }
 }
