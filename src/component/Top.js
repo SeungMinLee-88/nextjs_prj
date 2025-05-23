@@ -1,16 +1,10 @@
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { Header } from "semantic-ui-react";
-import { Button, Form } from "semantic-ui-react";
 import Gnb from "./Gnb";
-import { useContext } from 'react';
-import { UserIdContext } from '../pages/UserContext.js';
 
 export default function Top({setAccessToken, setLoginUserId, setLoginUserName, accessToken}) {
-  const router = useRouter();
-    //console.log("accessToken : " + localStorage.getItem("access"))
-  //const accessToken = useContext(AccessTokenContext);
-    const userId = useContext(UserIdContext);
+  const router = useRouter();;
   async function logout(){
     console.log("call logout");
     await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/logout` ,
@@ -18,7 +12,6 @@ export default function Top({setAccessToken, setLoginUserId, setLoginUserName, a
     {withCredentials: true}
     )
     .then(function (response) {
-      console.log("response.data : " + JSON.stringify(response.status));
       if(response.status === 200){
         localStorage.removeItem("access");
         window.sessionStorage.removeItem("loginId"); 

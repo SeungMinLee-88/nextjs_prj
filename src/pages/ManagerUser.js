@@ -1,20 +1,10 @@
 import Axios from "axios";
 import { useRouter } from "next/router";
-import { Header } from "semantic-ui-react";
-import { Button, Form } from "semantic-ui-react";
-import { useEffect, useContext } from 'react';
-import { UserIdContext } from '../pages/UserContext.js';
+import { useEffect } from 'react';
 
-export default function ManagerUser({setAccessToken, setLoginUserId, setLoginUserName, accessToken}) {
+export default function ManagerUser({ accessToken }) {
     const router = useRouter();
-      //console.log("accessToken : " + localStorage.getItem("access"))
-    //const accessToken = useContext(AccessTokenContext);
-      const userId = useContext(UserIdContext);
-      console.log("ManagerUser userId : " + userId);
-      
     async function chkAuthor(){
-      console.log("call chkAuthor");
-      console.log("ManagerUser accessToken : " + accessToken);
       await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/manageUser` ,
       {
         headers: {
@@ -26,10 +16,6 @@ export default function ManagerUser({setAccessToken, setLoginUserId, setLoginUse
         }
       )
       .then(function (response) {
-
-
-        //router.refresh();
-        //router.push(`/`);
       })
       .catch(function (error) {
         if(error.response.status === 403){
@@ -38,11 +24,9 @@ export default function ManagerUser({setAccessToken, setLoginUserId, setLoginUse
         }
       });
     }
-    
     useEffect(() => {
         chkAuthor()
     }, []);
-    
     
     return (
       <div>

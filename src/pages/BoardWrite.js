@@ -1,7 +1,9 @@
 import React from "react";
 import Axios from "axios";
 import { useRouter } from "next/navigation";
-import { FormGroup, FormField, Form, SegmentGroup, Segment } from 'semantic-ui-react'
+import { 
+FormField
+, Form } from 'semantic-ui-react'
 import { useEffect, useState, useRef } from "react";
 import { useContext } from 'react';
 
