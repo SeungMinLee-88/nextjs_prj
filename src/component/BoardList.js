@@ -99,7 +99,7 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
         <Pagination
           /* activePage={paginationOptions.activePage} */
-          activePage={currentPage}
+/*           activePage={currentPage} */
           boundaryRange={0}
           defaultActivePage={1}
           ellipsisItem={null}
@@ -108,7 +108,6 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
           siblingRange={1}
           totalPages={TotalPage}
           onPageChange={(_, { activePage }) => goToPage(activePage)}
-          
         />
         </div>
     </div>
