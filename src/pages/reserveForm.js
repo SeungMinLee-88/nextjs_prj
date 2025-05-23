@@ -11,7 +11,7 @@ import { UserIdContext } from './UserContext.js';
 import { UserNameContext } from './UserContext.js';
 
 const initialTimes = [];
-export default function ReserveForm({ selectDate, reserveDetailId, detailTimes, formMode }) {
+export default function ReserveForm({ selectDate, reserveDetailId, formMode }) {
 const [getDate, setgetDate] = useState(selectDate);
 const [reserveTimes, setReserveTimes] = useState([]);
 const [reserveDetail, setReserveDetail] = useState([]);
@@ -21,23 +21,6 @@ const [isChecked, setIsChecked] = useState(false);
 const [times, dispatch] = React.useReducer(reserveTimeReducer, initialTimes);  
 const inputRef1 = useRef();
 
-function reserveTimeReducer(times, action) {
-  console.log("action : " + JSON.stringify(action))
-  
-  switch (action.type) {
-    case 'INITIAL':
-      console.log("times INITIAL : " + JSON.stringify(times))
-      return action.times;
-    case 'CHECK':
-      console.log("times CHECK : " + JSON.stringify(times))
-      return [...times, action.timeId];
-    case 'UNCHECK':
-      console.log("times UNCHECK : " + JSON.stringify(times))
-      return times.filter(t => t !== action.timeId);
-    default:
-      throw new Error()
-  }
-}
 
 useEffect(() => {
   getData();
@@ -52,6 +35,20 @@ useEffect(() => {
 }, [selectDate, reserveDetailId]);
 const userId = useContext(UserIdContext);
 const userName = useContext(UserNameContext);
+
+function reserveTimeReducer(times, action) {
+  switch (action.type) {
+    case 'INITIAL':
+      return action.times;
+    case 'CHECK':
+      return [...times, action.timeId];
+    case 'UNCHECK':
+      return times.filter(t => t !== action.timeId);
+    default:
+      throw new Error()
+  }
+}
+
 
 async function getData() {
   await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reserve/timeList`, {
@@ -94,7 +91,6 @@ async function getDetailData() {
     for (var responseKey in response.data) {
       if(responseKey === "reserveTime"){
         for (var timeKey in response.data["reserveTime"]) {
-          console.log("reserveTime timeKey time : " +  timeKey + " : " + JSON.stringify(response.data[responseKey][timeKey]["time"]));
           reserveDetailTimeList.push(response.data[responseKey][timeKey]["time"]["id"]
           )   
         }
@@ -110,17 +106,15 @@ async function getDetailData() {
     console.log("error", error);
   });
 }
-  reserveTimes.map((reserveTime) => (
+/*   reserveTimes.map((reserveTime) => (
   reserveTime.reserved == true ? console.log(true) : console.log(false)
-));
+)); */
 
   function clearTextInput() {
     inputRef1.current.value= "";
   }
 
 const handleTimeChange = (e) => {
-  console.log("checked : " + e.target.checked);
-  console.log("tabIndex : " + e.target.tabIndex);
   var actionType = "";
   actionType="testset";
   e.target.checked ? actionType = "CHECK" : actionType = "UNCHECK";
@@ -128,20 +122,15 @@ const handleTimeChange = (e) => {
   e.target.checked ? setIsChecked(true) : setIsChecked(false);
   dispatch({ type: actionType, timeId: e.target.tabIndex})
 }
-console.log("handleTimeChange times : " + JSON.stringify(times));
 
 const router = useRouter();
 
-console.log("formMode : " + formMode);
-console.log("handleTimeChange reserveDetail : " + JSON.stringify(reserveDetail));
-
 const handleReserveDetail = (e) =>{
-  console.log("e.target.value : "+ e.target.value);
   setReserveDetail({...reserveDetail, reserveReason: e.target.value})
 }
    return(
 <div>
-<div style={{display: 'flex', "padding-left": "40px", "text-align": "center" }}>
+<div style={{display: 'flex', "paddingLeft": "40px", "textAlign": "center" }}>
 {reserveTimes.map((reserveTime, index) => (
   <div key={reserveTime.id} className="ui compact segment" style={{margin: '0'}}>
       {!reserveTime.reserved ?

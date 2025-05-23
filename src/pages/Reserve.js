@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState, useRef  } from "react";
+import { useRouter } from "next/navigation";
 import Axios from "axios";
 import ReserveForm from "./ReserveForm";
 import { useContext } from 'react';
@@ -13,10 +14,8 @@ const times = [];
 const reserveList = [];
 
 export default function Reserve({ reissueAccessToken }) {
-  //console.log("sessionStorage userId : " + window.sessionStorage.getItem("userId"));
+  var moment = require('moment');
 const [reserveData, setreserveData] = useState([]);
-var moment = require('moment');
-const userId = useContext(UserIdContext);
 const [formMode, setFormMode] = useState(""); 
 const [isVisible, setisVisible] = useState(false);
 const [selectDate, setSelectDate] = useState("");
@@ -25,9 +24,15 @@ const [reserveDetailId, setReserveDetailId] = useState("");
 const [reserveDetail, setReserveDetail] = useState([]);
 const [reserveDetailTimes, setReserveDetailTimes] = useState([]);
 const calendarRef = useRef(null);
+
+
+const userId = useContext(UserIdContext);
+
 useEffect(() => {
   getData();
+
 }, [selectDate, userId, formMode, isVisible, toolBarState]);
+
 
 async function getData() {
   await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reserve/reserveList`, {
@@ -61,27 +66,29 @@ async function getData() {
             );
         }
       }
-      for (var timeKey in response.data[0]["reserveTime"]) {
-        reserveList.push(
-          {
-            id: response.data[0]["id"],
-            reserveReason: response.data[0]["id"],
-            title: response.data[0]["reserveReason"],
-            start: moment(response.data[0]["reserveDate"]).format("YYYY-MM-DD")+"T"+response.data[0]["reserveTime"][0]["time"]["time"]+":00:00",
-            end: moment(response.data[0]["reserveDate"]).format("YYYY-MM-DD")+"T"+response.data[0]["reserveTime"][0]["time"]["time"]+":00:00",
-            time: response.data[0]["reserveTime"][timeKey]["time"]["time"],
-            allDay: false
-            }
-          );
-        for (var key in response.data[0]) {
-          if (!response.data[0].hasOwnProperty(key)) continue;
-        }
+      if(response.data[0]){
+        for (var timeKey in response.data[0]["reserveTime"]) {
+          reserveList.push(
+            {
+              id: response.data[0]["id"],
+              reserveReason: response.data[0]["id"],
+              title: response.data[0]["reserveReason"],
+              start: moment(response.data[0]["reserveDate"]).format("YYYY-MM-DD")+"T"+response.data[0]["reserveTime"][0]["time"]["time"]+":00:00",
+              end: moment(response.data[0]["reserveDate"]).format("YYYY-MM-DD")+"T"+response.data[0]["reserveTime"][0]["time"]["time"]+":00:00",
+              time: response.data[0]["reserveTime"][timeKey]["time"]["time"],
+              allDay: false
+              }
+            );
+          for (var key in response.data[0]) {
+            if (!response.data[0].hasOwnProperty(key)) continue;
+          }
+      }
     }
     setreserveData(reserveTotalList);
     })
     .catch(async function (error) {
-      console.log("error", error);
       console.log("error : " + error);
+      
       if(error.response.status === 401){
         if(confirm("Session is expired. Do you want Reissue?"))
           {
@@ -103,9 +110,9 @@ async function getData() {
           }
       }
     });
-
+    
+    
 }
-
 const handleSelectedDates = info => {
   var  startDate = moment(info.start);
   var endDate = moment(info.end);
@@ -129,8 +136,9 @@ const handleSelectedDates = info => {
 }
 
 async function getDetailData(detailId) {
-  const reserveDetailList = [];
-  const reserveDetailTimeList = [];
+const reserveDetailList = [];
+const reserveDetailTimeList = [];
+
   await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reserve/reserveDetail/${detailId}`, {
       headers: {
         "Content-Type": "application/json", 
@@ -149,57 +157,56 @@ async function getDetailData(detailId) {
         hallId : response.data["hallId"],
         reservePeriod : response.data["reservePeriod"]
       }
-    )
-    setReserveDetailTimes([])
-    for (var responseKey in response.data) {
-      if(responseKey === "reserveTime"){
-        for (var timeKey in response.data["reserveTime"]) {
-          console.log("reserveTime timeKey time : " +  timeKey + " : " + JSON.stringify(response.data[responseKey][timeKey]["time"]));
-          reserveDetailTimeList.push(response.data[responseKey][timeKey]["time"]["id"]
-          )   
-        }
+  )
+  setReserveDetailTimes([])
+  for (var responseKey in response.data) {
+    if(responseKey === "reserveTime"){
+      for (var timeKey in response.data["reserveTime"]) {
+        reserveDetailTimeList.push(response.data[responseKey][timeKey]["time"]["id"]
+        )   
       }
     }
-    setReserveDetail(reserveDetailList);
-    setReserveDetailTimes(reserveDetailTimeList);
+  }
+  setReserveDetail(reserveDetailList);
+  setReserveDetailTimes(reserveDetailTimeList);
 
   }).catch(function (error) {
-    console.log("error", error);
+    console.log("error : " + JSON.stringify(error));
   });
 }
-const handleEventClick  = (arg) => {
+const handleEventClick  = (arg) => {   
+
   setSelectDate(arg.event.extendedProps.reserveDate);
   setReserveDetailId(arg.event.id);
   getDetailData(arg.event.id);
   setisVisible(true);
   setFormMode("update");
+  
 };
+      
 
 const handleNextButtonClick = () => {
-  if (calendarRef.current) {
-    console.log(calendarRef.current.calendar.currentData.currentDate)
-    const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
-    console.log("currentMonth : " + parseInt(currentMonth)+1);
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.next();
-    setToolBarState(parseInt(currentMonth)+1);
-  }
+if (calendarRef.current) {
+  const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
+  const calendarApi = calendarRef.current.getApi();
+  calendarApi.next();
+  setToolBarState(parseInt(currentMonth)+1);
+}
 };
-
 const handlePrevButtonClick = () => {
-  if (calendarRef.current) {
-    console.log(calendarRef.current.calendar.currentData.currentDate)
-    const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
-    console.log("currentMonth : " + parseInt(currentMonth)-1)
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.prev();
-    setToolBarState(parseInt(currentMonth)-1);
-  }
+if (calendarRef.current) {
+  const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
+  const calendarApi = calendarRef.current.getApi();
+  calendarApi.prev();
+  setToolBarState(parseInt(currentMonth)-1);
+}
 };
 return(
   <div>
+
     <FullCalendar
     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+
     headerToolbar={{
       left: 'prev,next today',
       center: 'title',
@@ -231,10 +238,15 @@ return(
       hour12: false
     }}
     displayEventEnd={true}
-  />
-    {isVisible && (
-      <ReserveForm selectDate={selectDate} reserveDetailId={reserveDetailId} reserveDetailTimes={reserveDetailTimes} formMode={formMode} />
-    )}
-</div>
+    /* you can update a remote database when these fire:
+    eventAdd={function(){}}
+    eventChange={function(){}}
+    eventRemove={function(){}}
+    */
+    />
+      {isVisible && (
+        <ReserveForm selectDate={selectDate} reserveDetailId={reserveDetailId} reserveDetailTimes={reserveDetailTimes} formMode={formMode} />
+      )}
+  </div>
 )
 }
