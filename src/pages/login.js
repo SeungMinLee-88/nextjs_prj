@@ -35,13 +35,12 @@ return (
 
           if (response.headers.access) {
             localStorage.setItem("access", response.headers.access);
+            window.sessionStorage.setItem("loginId", loginId);
+            window.sessionStorage.setItem("userName", response.headers["username"]); 
+            setAccessToken(localStorage.getItem("access"));
+            setLoginUserId(loginId);
+            setLoginUserName(response.headers["username"]);
           }
-          setAccessToken(localStorage.getItem("access"));
-          setLoginUserId(loginId);
-          setLoginUserName(response.headers["username"]);
-          
-          window.sessionStorage.setItem("loginId", loginId);
-          window.sessionStorage.setItem("userName", response.headers["username"]); 
 
           alert("Login Success");
           router.push(`/`);

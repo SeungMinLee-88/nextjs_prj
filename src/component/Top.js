@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Header } from "semantic-ui-react";
 import Gnb from "./Gnb";
 
-export default function Top({setAccessToken, setLoginUserId, setLoginUserName, accessToken}) {
+export default function Top({accessToken, setLoginUserId, setLoginUserName, }) {
   const router = useRouter();;
   async function logout(){
     console.log("call logout");
@@ -17,7 +17,6 @@ export default function Top({setAccessToken, setLoginUserId, setLoginUserName, a
         window.sessionStorage.removeItem("loginId"); 
         window.sessionStorage.removeItem("userName"); 
       }
-      setAccessToken();
       setLoginUserId();
       setLoginUserName();
       alert("Logout Success");

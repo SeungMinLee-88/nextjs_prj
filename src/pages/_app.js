@@ -58,8 +58,7 @@ export default function MyApp({ Component, pageProps }) {
       setAccessToken={setAccessToken} 
       setLoginUserId={setLoginUserId} 
       setLoginUserName={setLoginUserName} 
-      reissueAccessToken={reissueAccessToken} 
-      accessToken={accessToken}/>
+      reissueAccessToken={reissueAccessToken}/>
       <Footer />
       </UserNameContext>
       </UserIdContext>
