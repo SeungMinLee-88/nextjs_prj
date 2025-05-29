@@ -88,17 +88,15 @@ export default function BoardWrite({ changeGoUrl, reissueAccessToken }) {
       };
 
   const fileInputRef1 = useRef();
-  const fileFormRef1 = React.createRef();
     return (
       <div>
         <Form onSubmit={onFormSubmit}>
             <FormField>
-            <label><span>Title</span> <span style={{"marginLeft": "700px"}}>Writer :  {userName}</span></label>
+            <label><span>Title</span> <span style={{"marginLeft": "680px"}}>Writer :  {userName}</span></label>
             <input name='boardTitle' />
             </FormField>
             <FormField name='boardContents' label='Contents' as="" control='textarea' rows='3' />
             <Form.Field>
-              <div ref={fileFormRef1}>
               <input type="file" name='files' multiple onChange={fileChange} ref={fileInputRef1} hidden/>
               {renderFileList()}
               <button type="button"
@@ -108,7 +106,6 @@ export default function BoardWrite({ changeGoUrl, reissueAccessToken }) {
                   icon="file"
                   onClick={() => fileInputRef1.current.click()}
                 ><i aria-hidden="true" className="file icon"></i>Choose File</button>
-                </div>
               </Form.Field>
             <div style={{display: 'flex', justifyContent:'right'}}>
             <button type="button"  className="ui button" onClick={() => changeGoUrl("/")}>List</button>

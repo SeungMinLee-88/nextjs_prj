@@ -23,7 +23,6 @@ useEffect(() => {
 
 const router = useRouter();
 const fileInputRef1 = useRef();
-const fileFormRef1 = React.createRef();
 
 if (router.isFallback) {
   return (
@@ -136,7 +135,7 @@ return (
   <div>
     <Form onSubmit={onFormSubmit}>
       <FormGroup widths='equal'>
-      <FormField style={{width: "100px", "text-align":"left", "font-size":"20px"}}>
+      <FormField style={{width: "100px", "textAlign":"left", "fontSize":"20px"}}>
         Writer : {boardDetail.boardWriter}
       </FormField>
       </FormGroup>
@@ -161,7 +160,7 @@ return (
   </div>
 )}
 <Form.Field>
-  <div ref={fileFormRef1}>
+
 <input type="file" name='files' multiple onChange={fileChange} ref={fileInputRef1} hidden/>
 {renderFileList()}
 <button type="button"
@@ -173,11 +172,11 @@ return (
   <i aria-hidden="true" className="file icon">
   </i>Choose File
   </button>
-  </div>
+
 </Form.Field>
   <Divider />
   <button type="submit" className="ui button">Update</button>
-  {userId === board.boardWriter ? <button className="ui button"  onClick={() => router.push(`http://localhost:3000/board/detail/${id}`)}>Cancel</button> : ""}
+  {userId === board.boardWriter ? <button type="button" className="ui button"  onClick={() => router.push(`http://localhost:3000/board/detail/${id}`)}>Cancel</button> : ""}
 </Form>
 </div>
   )}
