@@ -38,7 +38,6 @@ function getData() {
     },
   }
 ).then((response) => {
-
     setTotalPage(response.data.totalPages);
     setStartPage((((Number)(Math.ceil(Number(currentPage) / response.data.totalPages))) - 1) * response.data.pageable.pageSize + 1);
     setEndPage(((startPage + response.data.pageable.pageSize - 1) < response.data.totalPages) ? startPage + response.data.pageable.pageSize - 1 : response.data.totalPages);
@@ -46,9 +45,6 @@ function getData() {
   }).catch(function (error) {
     console.log("error", error);
   });
-  boardList.map((board) => (
-    console.log("board.boardTitle : " + board.boardTitle)
-  ));
 }
 function changePage(page) {
   setCurrentPage(page);
@@ -70,7 +66,7 @@ function changePage(page) {
       changePage={changePage} 
       changeSearchKey={setSearchKey} 
       changeSearchValue={setSearchValue} 
-      searchKey={searchKey}
+/*       searchKey={searchKey} */
       startPage={startPage} 
       endPage={endPage} /> 
       {userId !== null ? <button className="ui button" onClick={() => router.push("/BoardWrite")}>Write</button> : ""}

@@ -8,12 +8,9 @@ import {ListItem,
   Pagination,
   Search  } from "semantic-ui-react";
   import { useRouter } from "next/navigation";
-import styles from "./ItemList.module.css";
-import Link from "next/link";
 
-
-
-function exampleReducer(state, action) {
+function searchReducer(state, action) {
+  console.log("state : " + JSON.stringify(state))
   switch (action.type) {
     case 'CLEAN_QUERY':
       return initialState
@@ -22,7 +19,7 @@ function exampleReducer(state, action) {
     case 'FINISH_SEARCH':
       return { ...state, loading: false}
     case 'UPDATE_SELECTION':
-      return { ...state, value: action.selection }
+      return { ...state, searchKey: action.query }
 
     default:
       throw new Error()
@@ -30,12 +27,13 @@ function exampleReducer(state, action) {
 }
 const initialState = {
   loading: false,
-  results: [],
   value: '',
+  searchKey: ''
+
 }
-export default function BoardList({ boardList, currentPage, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue, searchKey }) {
-  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
-  const { loading, results, value } = state;
+export default function BoardList({ boardList, currentPage, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue }) {
+  const [state, dispatch] = React.useReducer(searchReducer, initialState);
+  const { loading, value, searchKey } = state;
   const router = useRouter();
   
   const goToPage = pageNumber => {
@@ -43,6 +41,7 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
   };
   const timeoutRef = React.useRef()
   const handleSearchChange = (e, data) => {
+    console.log("e : " + e.target.value)
     clearTimeout(timeoutRef.current)
     dispatch({ type: 'START_SEARCH', query: data.value })
     changeSearchValue(data.value);
@@ -58,12 +57,18 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
     }, 300)
   }
 
+  const handleSearchKey = (e) => {
+    console.log("e.target.value ; " + e.target.value)
+    dispatch({ type: 'UPDATE_SELECTION', query: e.target.value })
+    changeSearchKey(e.target.value);
+  }
+
   return (
     <div>
       <div style={{display: 'flex',  justifyContent:'right', alignItems:'right'}}>
     <select
       value={searchKey}
-      onChange={e => changeSearchKey(e.target.value)} style={{width: 100}}>
+      onChange={handleSearchKey} style={{width: 100}}>
       <option value="boardTitle">Title</option>
       <option value="boardWriter">Writer</option>
     </select>
@@ -71,6 +76,7 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
       <Search
           loading={loading}
           placeholder='Search...'
+          value={value}
           onSearchChange={handleSearchChange}
           showNoResults={false}
         />
@@ -98,8 +104,7 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
         {/* https://ko.react.dev/learn/javascript-in-jsx-with-curly-braces */}
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
         <Pagination
-          /* activePage={paginationOptions.activePage} */
-/*           activePage={currentPage} */
+          /* activePage={currentPage} */
           boundaryRange={0}
           defaultActivePage={1}
           ellipsisItem={null}
