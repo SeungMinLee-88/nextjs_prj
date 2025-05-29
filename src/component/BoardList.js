@@ -10,7 +10,6 @@ import {ListItem,
   import { useRouter } from "next/navigation";
 
 function searchReducer(state, action) {
-  console.log("state : " + JSON.stringify(state))
   switch (action.type) {
     case 'CLEAN_QUERY':
       return initialState
@@ -20,7 +19,6 @@ function searchReducer(state, action) {
       return { ...state, loading: false}
     case 'UPDATE_SELECTION':
       return { ...state, searchKey: action.query }
-
     default:
       throw new Error()
   }
@@ -29,9 +27,8 @@ const initialState = {
   loading: false,
   value: '',
   searchKey: ''
-
 }
-export default function BoardList({ boardList, currentPage, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue }) {
+export default function BoardList({ boardList, setCurrentPage, TotalPage, changePage, changeSearchKey, changeSearchValue }) {
   const [state, dispatch] = React.useReducer(searchReducer, initialState);
   const { loading, value, searchKey } = state;
   const router = useRouter();
@@ -41,14 +38,13 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
   };
   const timeoutRef = React.useRef()
   const handleSearchChange = (e, data) => {
-    console.log("e : " + e.target.value)
-    clearTimeout(timeoutRef.current)
-    dispatch({ type: 'START_SEARCH', query: data.value })
+    clearTimeout(timeoutRef.current);
+    dispatch({ type: 'START_SEARCH', query: data.value });
     changeSearchValue(data.value);
     setCurrentPage(1);
     timeoutRef.current = setTimeout(() => {
       if (data.value.length === 0) {
-        dispatch({ type: 'CLEAN_QUERY' })
+        dispatch({ type: 'CLEAN_QUERY' });
         return
       }
       dispatch({
@@ -56,11 +52,10 @@ export default function BoardList({ boardList, currentPage, setCurrentPage, Tota
       })
     }, 300)
   }
-
   const handleSearchKey = (e) => {
-    console.log("e.target.value ; " + e.target.value)
-    dispatch({ type: 'UPDATE_SELECTION', query: e.target.value })
+    dispatch({ type: 'UPDATE_SELECTION', query: e.target.value });
     changeSearchKey(e.target.value);
+    setCurrentPage(1);
   }
 
   return (

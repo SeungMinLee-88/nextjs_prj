@@ -116,6 +116,7 @@ const handleSelectedDates = info => {
   var  startDate = moment(info.start);
   var endDate = moment(info.end);
   const date = startDate.clone();
+  const nowDate = moment(new Date()).format('YYYYMMDD')
   var isWeekend = false;
   
   while (date.isBefore(endDate)) {
@@ -124,8 +125,12 @@ const handleSelectedDates = info => {
     }
     date.add(1, 'day');
   }
+  if (parseInt(startDate.format('YYYYMMDD')) <= parseInt(nowDate)) {
+    alert('can only make reservations after today.');
+    return false;
+    }
   if (isWeekend) {
-  alert('can\'t add event - weekend');
+  alert('can\'t add event on weekend');
   return false;
   }
   setSelectDate(startDate.format('YYYYMMDD'));

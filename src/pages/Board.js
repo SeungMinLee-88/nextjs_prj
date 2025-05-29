@@ -59,8 +59,7 @@ function changePage(page) {
       Board
       </Header>
       <Divider />
-      <BoardList boardList={boardList} 
-      currentPage={currentPage} 
+      <BoardList boardList={boardList}  
       setCurrentPage = {setCurrentPage} 
       TotalPage={totalPage} 
       changePage={changePage} 
