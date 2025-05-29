@@ -24,7 +24,7 @@ const [reserveDetailId, setReserveDetailId] = useState("");
 const [reserveDetail, setReserveDetail] = useState([]);
 const [reserveDetailTimes, setReserveDetailTimes] = useState([]);
 const calendarRef = useRef(null);
-
+const router = useRouter();
 
 const userId = useContext(UserIdContext);
 
@@ -87,8 +87,7 @@ async function getData() {
     setreserveData(reserveTotalList);
     })
     .catch(async function (error) {
-      console.log("error : " + error);
-      
+      console.log("error : " + error);    
       if(error.response.status === 401){
         if(confirm("Session is expired. Do you want Reissue?"))
           {
@@ -100,7 +99,7 @@ async function getData() {
               alert("Reissue success")
             }else{
               alert("Reissue false");
-              //router.push(`/Board`); 
+              router.push(`/`); 
             }
             
           }

@@ -47,22 +47,20 @@ export default function MyApp({ Component, pageProps }) {
   
   return (
     <div style={{ width: 800, margin: "0 auto" }}>
-
       <UserIdContext value={loginUserId}>
-      <UserNameContext value={loginUserName}>
-      <Top setAccessToken={setAccessToken}
-      setLoginUserId={setLoginUserId} 
-      setLoginUserName={setLoginUserName} 
-      accessToken={accessToken}/>
-      <Component {...pageProps} 
-      setAccessToken={setAccessToken} 
-      setLoginUserId={setLoginUserId} 
-      setLoginUserName={setLoginUserName} 
-      reissueAccessToken={reissueAccessToken}/>
-      <Footer />
-      </UserNameContext>
+        <UserNameContext value={loginUserName}>
+          <Top setAccessToken={setAccessToken}
+          setLoginUserId={setLoginUserId} 
+          setLoginUserName={setLoginUserName} 
+          accessToken={accessToken}/>
+          <Component {...pageProps} 
+          setAccessToken={setAccessToken} 
+          setLoginUserId={setLoginUserId} 
+          setLoginUserName={setLoginUserName} 
+          reissueAccessToken={reissueAccessToken}/>
+          <Footer />
+        </UserNameContext>
       </UserIdContext>
-      {/* </AccessTokenContext> */}
     </div>
   );
 }
