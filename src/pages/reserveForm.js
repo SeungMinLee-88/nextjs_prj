@@ -110,9 +110,9 @@ async function getDetailData() {
   reserveTime.reserved == true ? console.log(true) : console.log(false)
 )); */
 
-  function clearTextInput() {
-    inputRef1.current.value= "";
-  }
+function clearTextInput() {
+  inputRef1.current.value= "";
+}
 
 const handleTimeChange = (e) => {
   let actionType = "";
