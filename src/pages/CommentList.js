@@ -42,6 +42,9 @@ const addEdit = e => {
   const element = document.getElementById(editId);
   element.getAttribute("hidden") === null ? element.hidden = true : element.hidden = false;
 }
+const addDelete = e => {
+
+}
 
 async function commentGetRoot(commentId) {
   await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/comment/commentGetRoot`, {
@@ -144,6 +147,7 @@ return retRootId;
             </Form>
             </div>
             {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addEdit}>Edit</CommentAction>}
+            {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addDelete}>Delete</CommentAction>}
             <div id={"edit_div"+commentList["id"]} hidden>
             <Form onSubmit={updateFormSubmit}>
             <input type="text" id="commentId" name="commentId" commentid={commentList["id"]} hidden />
@@ -175,6 +179,7 @@ return retRootId;
               </Form>
               </div>
               {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addEdit}>Edit</CommentAction>}
+              {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addDelete}>Delete</CommentAction>}
 
               <div id={"edit_div"+commentList["id"]} hidden>
               <Form onSubmit={updateFormSubmit}>
@@ -200,7 +205,7 @@ return retRootId;
           },
           params: {
             page: currentPage,
-            size: "2",
+            size: "5",
             boardId: `${boardId}`
           },
         }
