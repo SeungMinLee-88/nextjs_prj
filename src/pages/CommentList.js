@@ -159,8 +159,8 @@ return retRootId;
           </CommentContent>
          </Comment>
          );
-          setCommentListRender([...commentListRender, 
-           renderVal]);
+        setCommentListRender([...commentListRender, 
+          renderVal]);
         recursiveMap(commentList["childrenComments"], "child", depthVal+1)
 
       }else{
