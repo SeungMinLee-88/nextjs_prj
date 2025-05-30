@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useRef  } from "react";
+import { useEffect, useState, useRef, createRef  } from "react";
 import { useRouter } from "next/navigation";
 import Axios from "axios";
 import ReserveForm from "./ReserveForm";
@@ -23,7 +23,7 @@ const [toolBarState, setToolBarState] = useState(moment(new Date()).format('YYYY
 const [reserveDetailId, setReserveDetailId] = useState("");
 const [reserveDetail, setReserveDetail] = useState([]);
 const [reserveDetailTimes, setReserveDetailTimes] = useState([]);
-const calendarRef = useRef(null);
+const calendarRef = createRef(null);
 const router = useRouter();
 
 const userId = useContext(UserIdContext);

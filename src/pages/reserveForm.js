@@ -115,8 +115,7 @@ async function getDetailData() {
   }
 
 const handleTimeChange = (e) => {
-  var actionType = "";
-  actionType="testset";
+  let actionType = "";
   e.target.checked ? actionType = "CHECK" : actionType = "UNCHECK";
   
   e.target.checked ? setIsChecked(true) : setIsChecked(false);
