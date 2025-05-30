@@ -98,16 +98,11 @@ const onFormSubmit = async evt => {
   formData.append("boardContents", boardContents);
 
   if(fileUpdateList.length === 0) {
-
   }else{
-
     fileUpdateList.forEach((fileUpdate) => {
-
     formData.append('boardFile', fileUpdate);
     });
   }
-
-
   await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/updateBoard`,
     formData,
     {

@@ -20,6 +20,7 @@ export default function BoardWrite({ changeGoUrl, reissueAccessToken }) {
     const newFiles = Array.from(e.target.files);
     setFileList(newFiles)
   };
+  
   const renderFileList = () => (
 <div>
   <li>
