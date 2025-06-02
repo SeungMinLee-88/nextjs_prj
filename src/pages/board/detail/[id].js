@@ -18,12 +18,6 @@ export default function BoardDetail({ board, id }) {
   const [imageFileList, setImageFileList] = useState([]);
   const userId = useContext(UserIdContext);
 
-useEffect(() => {
-  if(board["fileAttached"] === 1){
-      setFileList(board["boardFileDTO"]);
-      setImageFileList(fileList.filter(a => a.mimeType === "image"));
-    }
-}, [fileList]);
 
   if (router.isFallback) {
     return (
@@ -34,6 +28,14 @@ useEffect(() => {
       </div>
     );
   }
+  
+useEffect(() => {
+  if(board["fileAttached"] === 1){
+      setFileList(board["boardFileDTO"]);
+      setImageFileList(fileList.filter(a => a.mimeType === "image"));
+    }
+}, [fileList]);
+
   const boardDelete = async () => {
     if(!confirm("Do you want to delete?")){
       return false;
@@ -124,7 +126,7 @@ export async function getStaticPaths() {
         id: item.id.toString(),
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -133,14 +135,21 @@ export async function getStaticProps(context) {
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/detail/${id}`;
   const res = await Axios.get(apiUrl);
   const data = res.data;
+  
+/*   const [{ data }] = await Promise.all([
+    Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/detail/${id}`),
+    timeout(5000)
+  ]); */
 
   return {
     props: {
       board: data,
-      name: process.env.name,
       id: id
     },
   };
-  
+}
 
+
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

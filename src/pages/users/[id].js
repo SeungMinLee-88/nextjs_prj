@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Loader } from "semantic-ui-react";
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
@@ -7,11 +8,14 @@ export default function UserDetailPage({ user }) {
 	// fallback version
   if (router.isFallback) {
     return (
-      <div>
-        Loading...
+      <div style={{ padding: "100px 0" }}>
+        <Loader active inline="centered">
+          Loading
+        </Loader>
       </div>
-    )
+    );
   }
+  
   return (
     <div>
       {user.id} / {user.name} / {user.email}

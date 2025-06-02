@@ -76,7 +76,7 @@ export default function BoardList({ boardList, setCurrentPage, TotalPage, change
           showNoResults={false}
         />
    </div>
-   {boardList.length !== 0 ?
+   {boardList && boardList.length !== 0 ?
       <div>
        <List divided relaxed>
           {boardList.map((board) => (

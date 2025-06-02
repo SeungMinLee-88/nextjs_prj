@@ -39,12 +39,11 @@ const fileChange = e => {
 
   const newFiles = Array.from(e.target.files);
   setFileUpdateList(newFiles)
-  console.log("fileUpdateList : " +  JSON.stringify(fileUpdateList))
+
 };
   
 const renderFileList = () => (
   <div>
-  {console.log("fileUpdateList : " + fileUpdateList.length)}
       <li>
         Attached File : {fileUpdateList.length}
       </li>
@@ -195,8 +194,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  
-  console.log("call getStaticProps");
   const id = context.params.id;
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/detail/${id}`;
   const res = await Axios.get(apiUrl);
@@ -209,4 +206,9 @@ export async function getStaticProps(context) {
       id: id
     },
   };
+}
+
+
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
