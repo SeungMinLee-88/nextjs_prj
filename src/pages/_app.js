@@ -39,7 +39,6 @@ export default function MyApp({ Component, pageProps }) {
         result = true;
       })
       .catch(function (error) {
-            setReissueResult(false);
             result = false;
       });
       return result;

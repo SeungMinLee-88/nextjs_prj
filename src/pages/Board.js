@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Divider, Header } from "semantic-ui-react";
-import BoardList from "../component/BoardList";
+import BoardList from "./BoardList";
 import { useContext } from 'react';
 import { UserIdContext } from './UserContext.js';
 
