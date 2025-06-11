@@ -1,34 +1,17 @@
 # - 프로젝트 개요
-<<<<<<< HEAD
 예전 PHP 프레임워크인 Laravel을 통해 개발한 회의실 예약 프로젝트의 일부 기능을 프론트 영역은 react와 react 프레임워크인 Next.js, 백엔드 영역은 Spring Boot, Spring Data JPA, Spring Security 등을 통해 구현해 보았으며 해당 문서에서는 프론트 부분에 대해 중점적으로 다루었다.
 # - 개발기간
 - 25.04 ~ 25.05(약 1.5개월)
-=======
-예전 PHP 프레임워크인 Laravel을 통해 개발한 회의실 예약 프로젝트의 일부 기능을 프로트 영역은 react와 react 프레임워크인 Next.js, 백엔드 영역은 Spring Boot, Spring Data JPA, Spring Security 등을 통해 구현해 보았으며 해당 문서에서는 프론트 부분에 대해 중점적으로 다루었다.
-<br /><br />
-# - 개발기간
-- 25.04 ~ 25.05(약 1.5개월)\
-<br /><br />
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 # - 개발환경
 - node.js v18.20.5
 - react v19.0.0
 - Next.js v15.2.4
 - Semantic UI React, Axios, FullCalendar 등 라이브러리
-<<<<<<< HEAD
 # - 주요기능
 - 사용자인증 :\
 기본 사용자 인증, JWT 토큰 발급, 재발급, localStorage와 sessionStorage를 통한 사용자 접근 제어, react Context를 통한 컴포넌트 트리에 값 공유
 - 게시판 :\
 기본 게시판 CRUD 기능 및 검색, Semantic UI를 통한 페이징 처리, react reducer를 통한 검색 관련 state 로직 통합, react useRef를 이용한 렌더링 제어 및 DOM 엘리먼트 처리 등
-=======
-<br /><br />
-# - 주요기능
-- 사용자인증
-기본 사용자 인증, JWT 토큰 발급, 재발급, localStorage와 sessionStorage를 통한 사용자 접근 제어, react Context를 통한 값 전달 처리
-- 게시판 :\
-기본 게시판 CRUD 기능 및 검색, Semantic UI를통한 페이징 처리, react reducer를 통한 검색 기능, react useRef를 이용한 렌더링 제어 및 DOM 엘리먼트 처리 등
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 - 코멘트 :\
 코멘트 CRUD 기능, 코멘트 트리 UI 표현
 - 예약 :\
@@ -36,11 +19,7 @@
 FullCalendar 라이브러리를 통한 달력 UI 표현, react createRef를 이용한 클래스 컴포넌트 DOM 오브젝트 처리 등
 <br /><br />
 # - 특이사항
-<<<<<<< HEAD
 - Next.js의 Pages Router를 통해 구현 하였으며 공식 문서의 경우 App Router 사용을 권장 하나 Next.js를 처음 접할 경우 Pages Router를 통한 구현이 추천되어 Pages Router를 통해 구현 하였으며 향후 App Router 구조로 마이그레이션 진행 예정\
-=======
-- Next.js의 Pages Router를 통해 구현 하였으며 공식 문서의 경우 App Router 사용을 권장 하나 Next.js를 처음 접할 경우 Pages Router부터 사용하는 것이 추천되어 Pages Router를 통해 구현 하였으며 향후 App Router 구조로 마이그레이션 진행 예정
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 참고 -\
 <https://dev.to/dcs-ink/nextjs-app-router-vs-pages-router-3p57>\ <https://stackoverflow.com/questions/76570208/what-is-different-between-app-router-and-pages-router-in-next-js>\
 <https://www.reddit.com/r/nextjs/comments/1gdxcg5/why_do_you_still_prefer_page_router_over_app/>
@@ -60,19 +39,12 @@ FullCalendar 라이브러리를 통한 달력 UI 표현, react createRef를 이�
 ### 1.1 인증처리
 사용자 인증 및 접근 제어는 Spring Security와 JWT 라이브러리를 통해서 구현 하였으며 로그인 성공시 localStorage, sessionStorage에 인증과 권한 확인에 필요한 값을 저장한다.
 
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/1011ad0f-a204-42e5-a304-18fc4ce52063)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449907532-534f09cd-c7af-40a4-8e5f-7e8a208484fd.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T030957Z&X-Amz-Expires=300&X-Amz-Signature=db16a32cb3c031339bd46870db1add9f884fc92cde5328c857e0142a4475178a&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 
 login.js
 ```js
-<<<<<<< HEAD
 // Axios를 통해 사용자 인증을 요청하는 api url 호출 
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/login`, 
           {
             loginId: loginId,
@@ -107,11 +79,7 @@ export default function MyApp({ Component, pageProps }) {
   const [loginUserId, setLoginUserId] = useState();
   const [loginUserName, setLoginUserName] = useState("");
   const [reissueResult, setReissueResult] = useState(false);
-<<<<<<< HEAD
 ...
-=======
-...중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 // _app.js의 useEffect를 통해 렌더링 시 state setter로 state에 값을 할당한다.
   useEffect(() => {
     setAccessToken(localStorage.getItem("access"));
@@ -121,11 +89,7 @@ export default function MyApp({ Component, pageProps }) {
 ```
 
 ### 1.3 react Context를 통한 자식 컴포넌트로 값 전달
-<<<<<<< HEAD
 useEffect를 통한 state 변경 감지 부분 추가는 공유 레이아웃 컴포넌트에서 변경된 state를 값을 사용하기 위함과 이후 react Context를 통한 값 공유 방식을 구현해 보기 위해서이다.  
-=======
-useEffect를 통한 state 변경 감지 부분 추가는 공유 레이아웃 컴포넌트에서 변경된 state를 값을 사용하기 위함과 이후 react Context를 통한 값 전달을 구현해 보기 위해서이다.  
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 (<span style="color:red">**Next.js 13 이후 App Router의 Server Component는 Context Provider를 미지원 하므로 향후 마이그레이션 시에는 Client Component를 이용해 구성해 볼 예정**.</span> )  
 참고 -\
 <https://nextjs.org/docs/app/getting-started/server-and-client-components#context-providers>  
@@ -163,19 +127,12 @@ export const UserNameContext = createContext("userNameContext");
 ```
 Context를 선언하고 _app.js에서 Context를 provider로 하위 컴포넌트로 전달하여 다수 컴포넌트나 여러 단계를 거치는 하위 컴포넌트에서 사용자 정보를 사용할 수 있도록 하였다.
 
-<<<<<<< HEAD
 - Context 구조
 ```mermaid
 flowchart TB
   subgraph _app.js
   UserContext-->UserIdContext
   UserContext-->UserNameContext
-=======
-- Context 사용 예시)
-```mermaid
-flowchart TB
-  subgraph _app.js
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     subgraph Reserve.js
       subgraph ReserveForm.js
         UserIdContext
@@ -185,10 +142,7 @@ flowchart TB
   end
   style _app.js text-align:left
 ```
-<<<<<<< HEAD
 - ReserveForm
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 ```js
 import { UserIdContext } from './UserContext.js';
 import { UserNameContext } from './UserContext.js';
@@ -231,17 +185,8 @@ async function getData() {
       return;
     }
 ```
-<<<<<<< HEAD
 
 사용자 인증 성공 시 인증 jwt 토큰과 토큰 만료 시 재발급을 위한 리프레시 토큰이 발급되며 사용자 화면에서 유효한 토큰이 요구되는 페이지를 만료된 토큰을 가지고 접근 시 서버를 통해서  401에러가 리턴되며 해당 코드 리턴 시 토큰 재발급 여부를 확인 후 재발급 되도록 구현 하였다.
-=======
-- 인증토큰 만료 시 토큰 재발급 여부 확인
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449931523-15a336c6-8be6-4b1e-a86a-dbd9ed1d8345.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T031130Z&X-Amz-Expires=300&X-Amz-Signature=eef9a06524d856f449d0cab21bbbba78f69d845242ff832d9b0f2ad650c16b97&X-Amz-SignedHeaders=host)
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449931978-6388e7a0-8865-4d54-9a9d-9402c62a5267.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T031209Z&X-Amz-Expires=300&X-Amz-Signature=008d6a85f0b5f467ebb164a44e0b7ed4a673f0f98ff75bbe572d63c6c2c34ccc&X-Amz-SignedHeaders=host)
-
-사용자 인증 성공 시 인증 jwt 토큰과 토큰 만료 시 재발급을 위한 refresh 토큰이 발급되며 사용자 화면에서 유효한 토큰이 요구되는 페이지를 만료된 토큰을 가지고 접근 시 서버를 통해서  401에러가 리턴되며 해당 코드 리턴 시 토큰 재발급 여부를 확인 후 재발급 되도록 구현 하였다.
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 - 사용자 페이지의 인증 만료 여부 및 재발급 여부 확인 부분
 ```js
@@ -259,11 +204,7 @@ async function getData() {
     }
   ).then((response) => {
     
-<<<<<<< HEAD
 ... 
-=======
-... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 .catch(async function (error) {
       console.log("error : " + error);
@@ -289,13 +230,9 @@ async function getData() {
       }
     });
 ```
-<<<<<<< HEAD
 - 인증토큰 만료 시 토큰 재발급 여부 확인
 
 ![Image](https://github.com/user-attachments/assets/a088e33d-c9c0-4136-b814-fea65de9994b)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449933343-6b5f537d-0db8-41bb-ac05-7b32419e09f8.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T031439Z&X-Amz-Expires=300&X-Amz-Signature=1be41eb03f6279069d2300d9e59560a50d797acd8d37eb79ca523236458507a9&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 
 - _app.js의 토큰 재발급 부분
@@ -303,10 +240,7 @@ async function getData() {
 async function reissueAccessToken()
   {
     let result = "";
-<<<<<<< HEAD
     // 리프레시 토큰으로 인증 토큰 재발급 요청하는 api url을 호출한다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/reIssueToken` ,
       {},
       {
@@ -315,10 +249,7 @@ async function reissueAccessToken()
       )
       .then(function (response) {
         if(response.status === 200){
-<<<<<<< HEAD
           // 리프레시 토큰이 유효하다면 헤더 데이터로 새로운 인증 토큰과 쿠키 데이터로  리프레시 토큰이 발급된다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
           localStorage.removeItem("access");
           localStorage.setItem("access", response.headers.access);
         }
@@ -330,7 +261,6 @@ async function reissueAccessToken()
       return result;
   }
 ```
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/1f1d07ca-827b-4430-ba38-90de112fea32)
 
 ![Image](https://github.com/user-attachments/assets/7fa061bb-ab1c-48df-8024-37b19261a1f1)
@@ -338,11 +268,6 @@ async function reissueAccessToken()
 
 ### 1.5 사용자 권한 제어
 Spring Security의 권한 제어 기능을 서버상에 구현 하였으며 해당 기능 확인을 위한 사용자 권한을 확인 후 접근을 제어하는 기능을 구현 하였으며 해당 페이지에서는 권한 제어 기능만 구현하고 간략한 사용자 관리 기능은 Vuejs를 통해 구현 하였다.
-=======
-
-### 1.5 사용자 권한 제어
-Spring Security의 권한 제어 기능을 서버상에 구현 하였으며 해당 기능 확인을 위한 사용자 권한을 확인 후 접근을 제어하는 기능을 구현 하였으며 해당 페이지에서는 권한 제어 기능만 구현하고 간략한 사용자 관리 기능은 vue.js를 통해 구현 하였다.
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 - 서버의 SecurityConfig 클래스
 ```java
@@ -367,26 +292,16 @@ Spring Security의 권한 제어 기능을 서버상에 구현 하였으며 해�
 
 - COMMON, TEMP 권한이 있는 사용자가 권한이 없는 페이지 접근 시
 
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/2fad2355-eada-4d6f-a96a-a9d2b24403bb)
 
 ![Image](https://github.com/user-attachments/assets/650dc53c-b3e7-45d2-8752-a562db09232a)
 
 ![Image](https://github.com/user-attachments/assets/61cb545e-e20d-4c3a-bb9a-a66d0b0820be)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449951385-903552f0-6eaf-40e9-ade5-be1e746e4cfe.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040215Z&X-Amz-Expires=300&X-Amz-Signature=8775a98ed3694f42a03b418b9d59ae991f234b8892723e97e7fc694017d29621&X-Amz-SignedHeaders=host)
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449951105-c0461fdb-79ec-45af-8431-babe28e55c5b.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040104Z&X-Amz-Expires=300&X-Amz-Signature=296597c0a62198693ecd458600146b573c885f6f60aa67e8d309037539f8c73c&X-Amz-SignedHeaders=host)\
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 - ManagerUser.js
 ```js
 async function chkAuthor(){
-<<<<<<< HEAD
       // 서버에 ADMIN, MANAGER 권한이 필요한 api url을 호출
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
       await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/manageUser` ,
       {
         headers: {
@@ -400,17 +315,13 @@ async function chkAuthor(){
       .then(function (response) {
       })
       .catch(function (error) {
-<<<<<<< HEAD
         // COMMON, TEMP 권한은 접근이 불가 하므로 서버에서 403 에러를 리턴 하게 되며 인덱스 페이지로 리다이렉트 처리한다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
         if(error.response.status === 403){
                 alert("You are not authorized");
                 router.push(`/`); 
         }
       });
     }
-<<<<<<< HEAD
     // ManagerUser 컴포터넌트 접근 시 마운트가 완료되면 권한을 체크하는 chkAuthor를 호출 한다.
     useEffect(() => {
         chkAuthor()
@@ -421,35 +332,16 @@ async function chkAuthor(){
 ![Image](https://github.com/user-attachments/assets/0533548a-98b7-40fc-8fb3-5704ff3a9307)
 
 정상적으로 페이지에 접근 할 수 있다.
-=======
-    useEffect(() => {
-        chkAuthor()
-        // 페이지 렌더링 시 권한 확인
-    }, []);
-```
-- ADMIN이나 MANAGER 권한이 있는 사용자가 페이지 접근 시
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449951567-5d5424ae-8a51-4f05-ab1f-34934f6db538.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040259Z&X-Amz-Expires=300&X-Amz-Signature=77acb0a74c224c2204e595838ab490d40e88c3c14aef4f61c9fcaaccd57c179a&X-Amz-SignedHeaders=host)
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 ## 2. 게시판
 ### 1.1 기본기능 및 페이징, 검색 기능
 게시판 부분은 기본 CRUD 기능을 구현 하였으며 페이징 처리를 Semantic UI의 Pagination 컴포넌트를 통해 구현 하였다.
 
-<<<<<<< HEAD
 - 페이징 기능 동작
 ![Image](https://github.com/user-attachments/assets/72f8d7fe-9367-43be-96d6-b02b62397878)
 
 ```js
 <Pagination
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449951916-7104c2ed-7819-421f-abf6-efc3cbd6506f.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040420Z&X-Amz-Expires=300&X-Amz-Signature=1ca08ea40665f7bd93156159c6b2c94ba57b73eab996fabdc588c9342256df38&X-Amz-SignedHeaders=host)
-
-```js
-<Pagination
-          /* activePage={currentPage} */
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
           boundaryRange={0}
           defaultActivePage={1}
           ellipsisItem={null}
@@ -459,7 +351,6 @@ async function chkAuthor(){
           totalPages={TotalPage}
           onPageChange={(_, { activePage }) => goToPage(activePage)}
         />
-<<<<<<< HEAD
         // Pagination 컴포넌트에 Props 값을 설정하면 원하는 형태의 페이징 UI를 보여 줄 수 있다.
 ```
 또한 게시판의 검색기능 구현에는 react reducer 함수를 사용해 보았다.
@@ -519,65 +410,6 @@ const handleSearchKey = (e) => {
 ...
 function searchReducer(state, action) {
   // searchReducer 호출되면 reducer에서 action.type에 따라 분기하여 처리한다.
-=======
-        // Pagination Props 값을 설정하면 원하는 형태의 페이징 UI를 보여 줄 수 있다.
-```
-또한 게시판의 검색기능 구현에는 react reducer 함수를 사용해 보았다.
-
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449952051-b36255a4-f132-4c1c-879a-61a2a7b69df4.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040531Z&X-Amz-Expires=300&X-Amz-Signature=fe86222d1ecd8cccc7ea8a1415719f543b658583e1f569e5165d066b5235a919&X-Amz-SignedHeaders=host)
-
-```js
-  const [state, dispatch] = React.useReducer(searchReducer, initialState);
-  const { loading, value, searchKey } = state;
-  ...중략
-  const timeoutRef = React.useRef()
-  const handleSearchChange = (e, data) => {
-    clearTimeout(timeoutRef.current)
-    // 검색 입력칸에 검색어 입력 시 reducer 호출
-    dispatch({ type: 'START_SEARCH', query: data.value })
-    changeSearchValue(data.value);
-    setCurrentPage(1);
-    timeoutRef.current = setTimeout(() => {
-      if (data.value.length === 0) {
-        dispatch({ type: 'CLEAN_QUERY' })
-        return
-      }
-      dispatch({
-        type: 'FINISH_SEARCH',
-      })
-    }, 300)
-  }
-  const handleSearchKey = (e) => {
-    // 검색 필드 변경 시 reducer 호출
-    dispatch({ type: 'UPDATE_SELECTION', query: e.target.value });
-    changeSearchKey(e.target.value);
-    setCurrentPage(1);
-  }
-  ...중략
-    <select
-      value={searchKey}
-      onChange={handleSearchKey} style={{width: 100}}>
-      <option value="boardTitle">Title</option>
-      <option value="boardWriter">Writer</option>
-    </select>
-      
-      <Search
-          loading={loading}
-          placeholder='Search...'
-          value={value}
-          onSearchChange={handleSearchChange}
-          showNoResults={false}
-        />
-   </div>
-```
-검색 필드, 텍스트가 변경 시 handleSearchChange에서 이벤트를 처리하며 handleSearchChange는 searchReducer로 이벤트 유형 및 값을 전달 한다.
-
-
-```js
-function searchReducer(state, action) {
-  // 호출된 reducer에서 action.type에 따라 분기하여 처리
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   switch (action.type) {
     case 'CLEAN_QUERY':
       return initialState
@@ -597,17 +429,12 @@ const initialState = {
   searchKey: ''
 }
 ```
-<<<<<<< HEAD
 reducer를 사용하지 않았다면 3개의 state를 만들고 state를 처리하는 로직을 전부 만들어서 처리해야 하는데 reducer를 통해 loading ,value, searchKey 값을 업데이트하는 로직들을 통합하여 관리 하도록 구현 해보았다. \
-=======
-reducer를 통해 state를 업데이트하는 로직들을 통합하여 관리 하도록 구현 해보았다.\
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 참고 - <https://ko.react.dev/learn/extracting-state-logic-into-a-reducer>
 
 
 ### 1.2 첨부 파일 처리
 게시판 글쓰기, 수정의 경우 게시글에 첨부 파일을 첨부 하고 이미지 표시, 다운로드 할 수 있는 기능을 추가 했으며 파일 업로드 기능에 react의 useRef를 사용하여 react가 관리하는 DOM 노드에 접근하는 기능을 간단히 구현 해보았다.
-<<<<<<< HEAD
 
 - 파일 첨부 동작
 ![Image](https://github.com/user-attachments/assets/ae2dc1f8-c5de-4eb6-9f34-5b62f5f92f2f)
@@ -637,86 +464,45 @@ const renderFileList = () => (
 /* file input의 ref 속성에 fileInputRef1을 할당한다. */
 <input type="file" name='files' multiple onChange={fileChange} ref={fileInputRef1} hidden/>
 /* 파일이 첨부되면 fileChange를 통해 fileList state를 변경하고 renderFileList를 통해 jsx를 리턴한다 useEffect에서 fileList가 변경되면 다시 렌더링 하게되어 화면에서 파일 리스트를 확인 할 수 있다.*/
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449953044-dcac3ec8-461c-4f8e-8a9e-bf501b6a42a4.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T040911Z&X-Amz-Expires=300&X-Amz-Signature=e1eb2aa17e3cae0d4d9695d79c984a688915be9e163a74a27025a89e3f256f8f&X-Amz-SignedHeaders=host)
-
-![Image](h)
-
-- BoardWrite.js
-```js
-..  Ref를 선어 후 
-const fileInputRef1 = useRef();
-...중략
-
-<Form.Field>
-<input type="file" name='files' multiple onChange={fileChange} ref={fileInputRef1} hidden/>
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 {renderFileList()}
 <button type="button"
     name = "fileBtn"
     className="ui icon left labeled button"
     labelposition="left"
     icon="file"
-<<<<<<< HEAD
     /* 버튼을 클릭하면 fileInputRef1를 통해 file DOM에 접근할 수 있다.*/
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     onClick={() => fileInputRef1.current.click()}
   ><i aria-hidden="true" className="file icon"></i>Choose File</button>
 </Form.Field>
 ```
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/f0e0e9f1-28cc-4135-9945-33dc1efc8f92)
 
 file input을 hidden으로 숨김 처리하고 fileInputRef1 선언 후 선언한 fileInputRef1 &lt;input ref={fileInputRef1}> 처럼 어트리뷰트로 전달하여 fileInputRef1.current에서 input DOM 노드 읽게하여 fileInputRef1.current.click() 부분으로 click 이벤트를 발생 시키는 방식으로 구현하였다.
 
 #### 1.2.2 파일 전송
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449953245-ccffe91a-6218-4aef-812e-f5d6a9e03721.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041108Z&X-Amz-Expires=300&X-Amz-Signature=0855f350f8e52ebd01cee28f9e899df743158c218626699506f1830ba09de08b&X-Amz-SignedHeaders=host)
-
-file input을 hidden으로 숨김 처리하고 fileInputRef1 선언 후 선언한 fileInputRef1 &lt;input ref={fileInputRef1}> 처럼 어트리뷰트로 전달하여
-fileInputRef1.current에서 input DOM 노드 읽게하여 fileInputRef1.current.click() 부분으로 click 이벤트를 발생 시키는 방식으로 구혀하였다.
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 - BoardWrite.js
 ```js
 const [fileList, setFileList] = useState([]);
 
-<<<<<<< HEAD
 ...
-=======
-...중략
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   const fileChange = e => {
     const newFiles = Array.from(e.target.files);
     setFileList(newFiles)
   };
-<<<<<<< HEAD
 ...
           // 서버로 전송할 formData를 선언한다.
-=======
-...중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
           const formData = new FormData();
           formData.append("boardTitle", boardTitle);
           formData.append("boardWriter", boardWriter);
           formData.append("boardContents", boardContents);
-<<<<<<< HEAD
           // 파일을 첨부하면 formData에 boardFile을 추가하여 서버에 전송 한다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
           if(fileList.length === 0) {
           }else{
           fileList.forEach((fileList) => {
             formData.append('boardFile', fileList);
            });
           }
-<<<<<<< HEAD
 ...
-=======
-...중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/boardSave`,
             formData,
             {
@@ -727,20 +513,14 @@ await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/boardSave`,
             }
           )
 ```
-<<<<<<< HEAD
 react 렌더링한 요소를 서버로 전송할 경우 기존 html 양식 처럼 form을 submit 하는 형태가 아니기에 FormData 객체를 선언 후 전송할 필드와 데이터를 append 후 POST 요청으로 첨부 파일을 포함하여 데이터를 전송 하도록 구현 하였다.
 
 #### 1.2.3 상세 보기의 첨부파일
-=======
-react 렌더링한 요소를 서버로 전송할 경우 기존 html 양식 처럼 form을 submit 하는 형태가 아니기에 FormData 객체를 선언 후 전송할 필드와 데이터를 append 후 post 요청으로 첨부 파일을 포함하여 데이터를 전송 하도록 구현 하였다.
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 - /board/detail/[id].js
 ```js
 useEffect(() => {
   if(board["fileAttached"] === 1){
       setFileList(board["boardFileDTO"]);
-<<<<<<< HEAD
       // filter 함수를 통해 기존 state의 복사본을 생성하여 imageFileList에 할당한다.
       setImageFileList(fileList.filter(a => a.mimeType === "image"));
     }
@@ -764,21 +544,6 @@ useEffect(() => {
       
       ))}
 </List>
-=======
-      // filter 함수를 통해 기존 state의 복사본을 생성하여 할당
-      setImageFileList(fileList.filter(a => a.mimeType === "image"));
-    }
-}, [fileList]);
-... 중략
-          <List bulleted horizontal link>
-            <ListItem active>Attached | </ListItem>
-              {fileList.map((files) => (
-                  
-                  <a key={files.id} role="listitem" id={files.id} className="item"  href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/download/`+files.storedFileName} target="_blank">{files.originalFileName}{files.type}</a>                   
-                
-                ))}
-          </List>
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 ```
 
 BoardServiceImpl.class
@@ -801,28 +566,18 @@ BoardServiceImpl.class
     }
   }
 ```
-<<<<<<< HEAD
 - 게시판 상세 보기 동작
 ![Image](https://github.com/user-attachments/assets/fdd102f9-1d0f-4a23-bce1-f4fbefa848d4)
-=======
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449953527-9bc43e14-0fd9-48d9-bcf2-f1a6f5be983b.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041237Z&X-Amz-Expires=300&X-Amz-Signature=81d4d4a7ce550de3e97c5d786c48790bece69ed76ee8af4d028c7b75f937b352&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 상세보기에서 첨부된 파일의 타입을 체크하여 이미지일 경우 화면상에 보여 줄수 있도록 state를 만들어 react의 filter 함수를 통해 새로운 새로운 배열을 만들어 할당 할 수 있도록 하였다.\
 참고 - <https://ko.react.dev/learn/updating-arrays-in-state>
 
 
-<<<<<<< HEAD
 #### 1.2.4 게시글 수정시 첨부파일 처리
 - /board/update/[id].js
 ```js
 ...
 // 게시글 수정또한 파일을 첨부하면 formData에 boardFile을 추가하여 서버에 전송 한다.
-=======
-- /board/update/[id].js
-```js
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 if(fileUpdateList.length === 0) {
   }else{
     fileUpdateList.forEach((fileUpdate) => {
@@ -837,12 +592,8 @@ if(fileUpdateList.length === 0) {
         'Content-Type': 'multipart/form-data' 
       }
     })
-<<<<<<< HEAD
 ...
 // fileDelete는 파일 삭제를 요청하는 api url에 삭제대상 파일 아이디를 파라미터 값으로 요청한다.
-=======
-... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 const fileDelete = async function (fileId, boardId) {
     if(window.confirm('Delete attached file?')){
       await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/fileDelete/${fileId}&${boardId}`, {
@@ -850,10 +601,7 @@ const fileDelete = async function (fileId, boardId) {
           "Content-Type": "application/json", 
           access: localStorage.getItem("access") 
         },
-<<<<<<< HEAD
         // params는 URL 파라미터
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
         params: {
           fileId: fileId,
           boardId: boardId
@@ -870,7 +618,6 @@ const fileDelete = async function (fileId, boardId) {
     });
     };
   };
-<<<<<<< HEAD
   ...
 <div>
 <div role="list" className="ui bulleted horizontal link list">
@@ -883,13 +630,10 @@ const fileDelete = async function (fileId, boardId) {
   ))}
   </div>
 </div>
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 ```
 
 BoardServiceImpl.class
 ```java
-<<<<<<< HEAD
 @Transactional
 public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
   boardFileRepository.deleteById(fileId);
@@ -910,51 +654,20 @@ public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
 }
 ```
 ![Image](https://github.com/user-attachments/assets/a03cf549-8680-4709-b89f-1755674c431f)
-=======
-  @Transactional
-  public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
-    boardFileRepository.deleteById(fileId);
-    // 특정 id 첨부 파일을 삭제하고
-
-    List<BoardFileEntity> boardFileEntityList = boardFileRepository.findByBoardId(boardId);
-
-    ModelMapper mapper = new ModelMapper();
-    List<BoardFileDTO> fileDTOList = mapper.map(boardFileEntityList, new TypeToken<List<BoardFileDTO>>() {
-    }.getType());
-
-    if(boardFileEntityList.size() == 0)
-    {
-      // 첨부된 파일이 없을 시 게시글의 첨부 여부 update
-      boardRepository.updatefileAttached(boardId);
-    }
-
-    return fileDTOList;
-  }
-```
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449953695-732de504-5206-4889-ba45-990802761620.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041324Z&X-Amz-Expires=300&X-Amz-Signature=dfe1f82cf91ef9ac161af57a78eeaa419f35a95df8ffdad49f2adf2a9f8993ea&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 게시판의 수정또한 신규로 첨부되는 파일은 FormData 객체에 append하여 처리 되도록 구현 하였고 게시글의 모든 첨부 파일이 삭제되면 게시글의 파일 첨부여부를 false로 업데이트 되도록 하였다.
 
 
 ### 1.3 동적 라우팅을 통한 접근
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/f03e5b8f-224e-4c67-add9-74df4f0be14d)
 
 ![Image](https://github.com/user-attachments/assets/abf91a2a-88ce-41ab-b1f2-29d1f9ad2175)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449954006-9f7167c5-fd4e-450a-8d2a-79a7cb5dcd71.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041429Z&X-Amz-Expires=300&X-Amz-Signature=0c1cbefd8516a85676686b026e87fcb18dc93fe3d82f12de6394a2c7e91827fd&X-Amz-SignedHeaders=host)
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449954050-16f86bfa-aeb6-43b5-868e-f0eb575e5125.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041448Z&X-Amz-Expires=300&X-Amz-Signature=b4c203d9dfe731a8cb6f5d002541045b48f8b0b0858e0b622a152bf89eef6019&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 게시판의 상세보기와 수정 페이지는 nextjs의 동적 라우트로 생성 하여 동적 세그먼트를 통해 접속이 가능 하도록 하였다.\
 참고 - <https://nextjs-ko.org/docs/pages/building-your-application/routing/dynamic-routes>
 
 - /board/detail/[id].js
 ```js
-<<<<<<< HEAD
 ...
 // getStaticPaths에서 fallback을 true로 설정하면 Loading 페이지를 보여지도록 할 수 있다.
   if (router.isFallback) {
@@ -970,29 +683,17 @@ public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
 
 export async function getStaticPaths() {
   //getStaticPaths를 통해 사전 렌더링이 필요한 경로를 지정
-=======
-export async function getStaticPaths() {
-  //사전 렌더링이 필요한 경로를 지정하고
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   const apiUrl =  `${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/list`;
   const res = await Axios.get(apiUrl);
   const data = res.data;
   return {
-<<<<<<< HEAD
     // 리턴 시 getStaticProps paths로 값을 넘긴다.
-=======
-    // getStaticProps paths 값을 넘기게 되는 것이다.
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     paths: data.slice(0, 50).map((item) => ({
       params: {
         id: item.id.toString(),
       },
     })),
-<<<<<<< HEAD
     // 그리고 fallback 값에따라 사전 렌더링 범위가 아닌 페이지 요청 시의 getStaticProps의 동작을 지정 할 수 있다.(404 리턴 등)
-=======
-    // 그리고 fallback 값에따라 getStaticProps 동작을 지정 할 수 있다.(404 리턴 등)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     fallback: true,
   };
 }
@@ -1002,10 +703,6 @@ export async function getStaticProps(context) {
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/detail/${id}`;
   const res = await Axios.get(apiUrl);
   const data = res.data;
-<<<<<<< HEAD
-=======
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   return {
     props: {
       board: data,
@@ -1014,22 +711,14 @@ export async function getStaticProps(context) {
   };
 }
 ```
-<<<<<<< HEAD
 getStaticPaths를 통해 동적 라우트를 사용하는 페이지를 정적으로 사전 렌더링 처리 하게되면 
 next build시에 데이터를 가져와 Static Page를 미리 생성하는것을 볼 수 있다.
 
 ![Image](https://github.com/user-attachments/assets/f361ae7a-294d-42b5-afa6-809d7cf0bc51)
-=======
-또한 getStaticPaths를 통해 동적 라우트를 사용하는 페이지를 정적으로 사전 렌더링 처리를 구현 해보았다.\
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/450037246-64596fd5-073a-4a2d-b3fc-993deadeb369.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T081154Z&X-Amz-Expires=300&X-Amz-Signature=48d51529e3ceecac1afaf021768e9665bb07aa274f1da36baa307113a14ed7e9&X-Amz-SignedHeaders=host)\
-next build시에 데이터를 가져와 Static Page를 미리 생성하는것을 볼 수 있다.
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 참고 - <https://nextjs-ko.org/docs/pages/building-your-application/data-fetching/get-static-paths>
 
 
-<<<<<<< HEAD
 ## 3. 코멘트
 ### 3.1 페이징
 코멘트의 경우 로그인 시 코멘트 입력 폼을 볼 수 있도록 하였고 페이징은 게시판의 페이징과 동일한 방식으로 Pagination 컴포넌트를 통해 구현 하였다.\
@@ -1041,25 +730,11 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
 {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addEdit}>Edit</CommentAction>}
 {userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addDelete}>Delete</CommentAction>}
 ...
-=======
-</br></br>
-## 3. 코멘트
-### 1.1 기본기능 및 페이징
-- CommentList.js
-```js
-{userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addEdit}>Edit</CommentAction>}
-{userId === commentList["commentWriter"] && <CommentAction commentid={commentList["id"]} onClick={addDelete}>Delete</CommentAction>}
-
-... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 <div>
   <span>Comments</span>
   <Divider />
   {userId !== null &&
-<<<<<<< HEAD
 // 로그인 사용자의 정보가 존재 하여야 코멘트 작성 폼이 노출된다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 <Form onSubmit={addFormSubmit} reply>
   <FormField name='commentContents' label='Comments' as="" control='textarea' rows='3' />
   <button type="submit" className="ui icon primary left labeled button" color="blue">
@@ -1067,12 +742,8 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
   Add Comment
   </button>
 </Form>
-<<<<<<< HEAD
 ...
 
-=======
-... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 <Pagination
   activePage={currentPage}
   boundaryRange={0}
@@ -1082,15 +753,11 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
   siblingRange={1}
   totalPages={totalPage}
   onPageChange={(_, { activePage }) => goToPage(activePage)}
-<<<<<<< HEAD
   // 게시판과 마찬가지로 Pagination 컴포넌트에 Props 값을 설정하면 원하는 형태의 페이징 UI를 보여 줄 수 있다.
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   
 />
 
 ```
-<<<<<<< HEAD
 - 코멘트 페이징 동작 및 입력 폼
 
 ![Image](https://github.com/user-attachments/assets/1eebe5de-80f7-4895-b9c9-4e851c1dfdc8)
@@ -1101,18 +768,6 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
 ### 3.2 코멘트 리스트
 
 ![Image](https://github.com/user-attachments/assets/b0a399c4-cf8e-4ee9-99a2-e79b69c4b4d6)
-=======
-
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449954273-77b1c779-b3f8-485b-89c2-e17fcb6e48df.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041608Z&X-Amz-Expires=300&X-Amz-Signature=cf08cb8079a6439f1f6ba5e487b94df73ac51c0fb73a4624f9e7d8611d0e253f&X-Amz-SignedHeaders=host)
-
-코멘트의 경우 로그인 시 코멘트 입력 폼을 볼 수 있도록 하였고 페이징은 게시판의 페이징과 동일한 방식으로 Pagination 컴포넌트를 통해 구현 하였다.\
-또한 자신이 작성한 코멘트일 경우에만 수정 삭제가 가능 하며 다른 사용자가 작성한 코멘트에는 덧글 달기가 가능 하도록 하였다.
-
-### 1.2 코멘트 리스트
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449954482-903dd1b8-9d7b-444f-8c30-9446906280ad.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T041739Z&X-Amz-Expires=300&X-Amz-Signature=9c5659775125f8d2d55b09c5d5fe04762ddd56740193fc8b7654523a16cf0c99&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 - 코멘트 리스트 요청 시 리턴 형태
 ```json
@@ -1170,7 +825,6 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
 ```js
 function recursiveMap(commentLists, level, depthVal) {
     commentLists.map((commentList) => {
-<<<<<<< HEAD
       ...
       // 코멘트에 자식 코멘트 존재 여부 확인
       if(commentList["childrenComments"] !== "" && commentList["childrenComments"] !== null 
@@ -1184,38 +838,14 @@ function recursiveMap(commentLists, level, depthVal) {
          </Comment>
          );
         // 배열 전개 구문 ...로 기존 배열에 새로운 렌더링 대상 값을 추가한다.
-=======
-      var depthStyle = depthVal * 20;
-
-      if(commentList["childrenComments"] !== "" && commentList["childrenComments"] !== null 
-        && commentList["childrenComments"].length > 0
-      ){
-        // 코멘트에 자식 코멘트 존재 여부 확인
-        renderVal.push(<Comment key={commentList["id"]} style={{ paddingLeft: depthStyle }}>
-          <CommentContent>
-              ... 중략
-          </CommentContent>
-         </Comment>
-         );
-                 // 배열 전개 구문 ...로 기존 배열에 새로운 렌더링 대상 값을 추가
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
         setCommentListRender([...commentListRender, 
           renderVal]);
         // 자식 코멘트 존재 시 코멘트 depth 값을 증가 시키기고 재귀 호출로 코멘트 리스트를 다시 만든다.
         recursiveMap(commentList["childrenComments"], "child", depthVal+1)
-<<<<<<< HEAD
       }else{
         renderVal.push(<Comment key={commentList["id"]} style={{ paddingLeft: depthStyle }}>
           <CommentContent>
             ...
-=======
-
-      }else{
-
-        renderVal.push(<Comment key={commentList["id"]} style={{ paddingLeft: depthStyle }}>
-          <CommentContent>
-            ... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
          </CommentContent>
          </Comment>);
           setCommentListRender([...commentListRender, 
@@ -1228,7 +858,6 @@ function recursiveMap(commentLists, level, depthVal) {
 
 ## 4. 예약
 ### 4.1 기본기능
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/59e3a5f2-6d17-4cbc-8b13-3ce09b4431c0)
 
 예약 페이지는 주말이 아닌 현재 일자 이후만 예약이 가능 하도록 구성 하였다
@@ -1241,27 +870,11 @@ function recursiveMap(commentLists, level, depthVal) {
 
 ![Image](https://github.com/user-attachments/assets/e6779d37-a772-492c-9364-1f7e31332ba3)
 
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449955894-5e2323a1-bb61-4129-8ba2-7ed57cbcda65.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042208Z&X-Amz-Expires=300&X-Amz-Signature=65e094dcebbdc1940de8cfb962c53566c316169bb1a68d60c030de124b08fb65&X-Amz-SignedHeaders=host)
-예약 페이지는 주말이 아닌 현재 일자 이후만 예약이 가능 하도록 구성 하였다
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449955974-cd4dd349-8fc8-41b7-ae0f-641d06b1bfae.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042232Z&X-Amz-Expires=300&X-Amz-Signature=39f6aa93d0c7dbea14acc61360ccaab916553ad933b7b5ac185f8f289faa0e2b&X-Amz-SignedHeaders=host
-)
-원하는 일자 선택 시 예약자 아이디와 이름은 세션에서 가져오도록 하고 예약 시간을 선택한 만큼 예약 기간 값은 업데이트 된다.
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449956089-cde840cf-4fdd-46a4-9d32-0cdfb4621c38.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042315Z&X-Amz-Expires=300&X-Amz-Signature=e1169be3abd20dc774a0fb330f567cd53c38929d9bdb23262a15defa8475013d&X-Amz-SignedHeaders=host)
-
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449956180-7f9e20f3-64ba-45eb-b277-690546a0674f.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042344Z&X-Amz-Expires=300&X-Amz-Signature=4af33b2be9931928d1cc34cd97b7b9e5009eedc5a3afcca4f71cd9116b7f0031&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 자신이 선택한 예약 리스트 선택 시 예약 시간등을 업데이트 할 수 있으며 리스트가 아닌 일자 선택 시 기존 예약된 시간은 예약이 불가능 하도록 disable 처리 되도도록 하였다.
 또한 예약 리스트는 자신이 예약한 리스트만 보여주도록 구현해 보았다.
 
 ### 4.2 FullCalendar 컴포넌트 사용
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/b037c63e-cee5-498f-8f87-8c66c2eb7ff4)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449956538-94857c03-2b63-44ed-bf00-d17648fb7cd5.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042532Z&X-Amz-Expires=300&X-Amz-Signature=2c21589e348c026c4b26182e97d23e5b7ae65ec59f7965ec615414ee7bf91c5f&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 예약 페이지를 구현하기 위해 직접 달력 UI를 만들지 않고 오픈 소스 캘린더 라이브러리인 FullCalendar를 이용해 보았다 Premium 버전 등이 있지만 Standard 버전으로 원하는 기능 구현이 충분 하기에 Standard 버전으로 구성 하였다.
 FullCalendar는 next, prev 버튼에 대한 이벤트 props가 없으므로 customButtons
@@ -1270,7 +883,6 @@ setToolBarState를 통해 리렌더링을 발생 시켜 다음월, 이전월의 
 
 - Reserve.js
 ``` js
-<<<<<<< HEAD
 ...
 async function getData() {
   await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reserve/reserveList`, {
@@ -1295,18 +907,6 @@ if (calendarRef.current) {
   const calendarApi = calendarRef.current.getApi();
   calendarApi.next();
   // 서버에서 현재 FullCalendar 보여주고 있는 월의 예약 리스트를 가져오기 위해 toolBarState state를 변경 한다.
-=======
-const calendarRef = createRef(null);
-
-... 중략
-
-// calendarRef를 통해 FullCalendar 클래스 컴포넌트 객체에 접근
-const handleNextButtonClick = () => {
-if (calendarRef.current) {
-  const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
-  const calendarApi = calendarRef.current.getApi();
-  calendarApi.next();
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
   setToolBarState(parseInt(currentMonth)+1);
 }
 };
@@ -1318,19 +918,10 @@ if (calendarRef.current) {
   setToolBarState(parseInt(currentMonth)-1);
 }
 };
-<<<<<<< HEAD
 ... 
 <FullCalendar
     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
     // next, prev 버튼을 클릭 시 예약 년월 state를 변경 해주기 위해 customButtons 추가
-=======
-
-... 중략
-
-<FullCalendar
-    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     headerToolbar={{
       left: 'prev,next today',
       center: 'title',
@@ -1346,10 +937,6 @@ if (calendarRef.current) {
         click: handleNextButtonClick
       }
     }}
-<<<<<<< HEAD
-=======
-    // next, prev 버튼을 클릭 시 예약 년월 state를 변경 해주기 위해  customButtons 추가
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     ref={calendarRef}
     initialView='dayGridMonth'
     select={handleSelectedDates}
@@ -1359,10 +946,7 @@ if (calendarRef.current) {
     selectMirror={true}
     dayMaxEvents={true}
     weekends={true}
-<<<<<<< HEAD
     // events prop에 reserveData state를 설정
-=======
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
     events={{events: reserveData}}
     // FullCalendar 컴포넌트를 렌더링하고 events 데이터에는 사용자가 예약한 데이터들을 커스텀하게 만들어 할당해 주었다.
     eventTimeFormat={{
@@ -1373,11 +957,7 @@ if (calendarRef.current) {
     displayEventEnd={true}
     />
 ```
-<<<<<<< HEAD
 서버로 부터 리턴 받은 예약 리스트를 FullCalendar를 events prop에 할당 가능한 형태로 가공하여 FullCalendar의 events={{events: reserveData}}로 이벤트를 할당하여 화면에 보여 줄 수 있도록 하였다.
-=======
-서버로 부터 리턴 받은 예약 리스트를 FullCalendar를 events prop에 할당 가능한 형태로 가공하여 처리하였다.
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 - Reserve.js
 ```js
@@ -1402,11 +982,7 @@ for (var timeKey in response.data[responseKey]["reserveTime"]) {
 ```
 
 ### 4.3 예약 시간 처리(react reducer)
-<<<<<<< HEAD
 ![Image](https://github.com/user-attachments/assets/f9193c9b-940e-47bb-b8ab-ab352d1205a8)
-=======
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/84305801/449957011-5373bd34-87fe-42cd-a91e-44b54b4aea6f.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250602%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250602T042817Z&X-Amz-Expires=300&X-Amz-Signature=8eb9b257f4bc3b36b993dad1c7543e0467f5affdf097d8ffece402b84e40d98f&X-Amz-SignedHeaders=host)
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 
 예약 시간 처리도 게시판의 검색 기능 처럼 react reducer를 이용해 구현 해보 았다. handleTimeChange에서 체크박스의 상태에 따라 times 값을 처리 하도록 하였고 체크된 상태에서 이미 예약이 있는 일자 선택 시 times 값을 false로 처리 하기 위해 useEffect에서 렌더링 시 action.type INITIAL로 reducer를 호출 하도록 하였다.
 
@@ -1440,11 +1016,7 @@ function reserveTimeReducer(times, action) {
       throw new Error()
   }
 }
-<<<<<<< HEAD
 ...
-=======
-... 중략
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
 // 예약 시간 체크 시 checked 상태에 따라 다른 actionType으로 dispatch 호출
 const handleTimeChange = (e) => {
   let actionType = "";
@@ -1456,8 +1028,4 @@ const handleTimeChange = (e) => {
 
 ```
 ## 5. 결론 및 향후 계획
-<<<<<<< HEAD
 JavaScript 라이브러리인 react와 react 기반 프레임워크인 nextjs를 통해 예전에 진행했던 예약 플젝트의 일부를 구현 해보았다. 이번 프로젝트는 react와 nextjs를 처음 접해보고 사용기에 Pages Router를 통해 구현 하였으며
-=======
-JavaScript 라이브러리인 react와 react 기반 프레임워크인 nextjs를 통해 예전에 진행했던 예약 플젝트의 일부를 구현 해보았다. 이번 프로젝트는 react와 nextjs를 처음 접해보고 사용해본 것이기에 Pages Router 
->>>>>>> 97330931251c3d17705200a36d5d58702d4a6a10
