@@ -9,7 +9,7 @@
 - Semantic UI React, Axios, FullCalendar 등 라이브러리
 # - 주요기능
 - 사용자인증 :\
-기본 사용자 인증, JWT 토큰 발급, 재발급, localStorage와 sessionStorage를 통한 사용자 접근 제어, react Context를 통한 컴포넌트 트리에 값 공유
+기본 사용자 인증, JWT 토큰 발급, 재발급, localStorage와 sessionStorage를 통한 사용자 정보 저장, react Context를 통한 컴포넌트 트리에 값 공유
 - 게시판 :\
 기본 게시판 CRUD 기능 및 검색, Semantic UI를 통한 페이징 처리, react reducer를 통한 검색 관련 state 로직 통합, react useRef를 이용한 렌더링 제어 및 DOM 엘리먼트 처리 등
 - 코멘트 :\
@@ -19,13 +19,13 @@
 FullCalendar 라이브러리를 통한 달력 UI 표현, react createRef를 이용한 클래스 컴포넌트 DOM 오브젝트 처리 등
 <br /><br />
 # - 특이사항
-- Next.js의 Pages Router를 통해 구현 하였으며 공식 문서의 경우 App Router 사용을 권장 하나 Next.js를 처음 접할 경우 Pages Router를 통한 구현이 추천되어 Pages Router를 통해 구현 하였으며 향후 App Router 구조로 마이그레이션 진행 예정\
-참고 -\
+- Next.js의 Pages Router를 통해 구현 하였으며 공식 문서의 경우 App Router 사용을 권장 하나 Next.js를 처음 접할 경우 Pages Router를 통한 구현이 추천되어 Pages Router를 통해 구현 하였으며 향후 App Router 구조로 마이그레이션 진행 해볼 예정
+- 참고 -\
 <https://dev.to/dcs-ink/nextjs-app-router-vs-pages-router-3p57>\ <https://stackoverflow.com/questions/76570208/what-is-different-between-app-router-and-pages-router-in-next-js>\
 <https://www.reddit.com/r/nextjs/comments/1gdxcg5/why_do_you_still_prefer_page_router_over_app/>
 
 - 기본 App 재정의 하여 _app.js를 통한 커스텀 앱 형태로 구현\
-참고 -\
+- 참고 -\
 <https://www.dhiwise.com/post/the-power-of-nextjs-custom-routes-in-modern-web-development>\
 <https://medium.com/@farihatulmaria/what-is-the-purpose-of-the-app-js-and-document-js-files-in-a-next-js-application-397f22fed69e>
 
@@ -70,7 +70,7 @@ await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/login`,
 ```
 
 ### 1.2 사용자 정보 처리
-로컬과 세션 스토리지에 인증 정보와 사용자 정보를 저장 후 로그인 컴포넌트에서 _app.js로 부터 전달 받은 state setter를 통해 액세스 토큰과 사용자 아이디 값을 state에 저장하고 _app.js는 useEffect를 통해 state의 변경을 감지하여 컴포넌트를 리렌더링 한다
+로컬과 세션 스토리지에 인증 정보와 사용자 정보를 저장 후 로그인 컴포넌트에서 _app.js로 부터 전달 받은 state setter를 통해 액세스 토큰과 사용자 아이디 값을 state에 저장하고 _app.js의 useEffect를 통해 state의 변경을 감지하여 컴포넌트를 리렌더링 한다
 
 - _app.js
 ```js
@@ -90,8 +90,8 @@ export default function MyApp({ Component, pageProps }) {
 
 ### 1.3 react Context를 통한 자식 컴포넌트로 값 전달
 useEffect를 통한 state 변경 감지 부분 추가는 공유 레이아웃 컴포넌트에서 변경된 state를 값을 사용하기 위함과 이후 react Context를 통한 값 공유 방식을 구현해 보기 위해서이다.  
-(<span style="color:red">**Next.js 13 이후 App Router의 Server Component는 Context Provider를 미지원 하므로 향후 마이그레이션 시에는 Client Component를 이용해 구성해 볼 예정**.</span> )  
-참고 -\
+(<span style="color:red">**Next.js 13 이후 App Router의 Server Component는 Context Provider를 미지원 하므로 향후 마이그레이션 시에는 Client Component를 이용해 구성해 볼 예정.**</span>)  
+- 참고 -\
 <https://nextjs.org/docs/app/getting-started/server-and-client-components#context-providers>  
 <https://nextjs-ko.org/docs/app/building-your-application/rendering/server-components>
 
@@ -142,11 +142,11 @@ flowchart TB
   end
   style _app.js text-align:left
 ```
-- ReserveForm
+- Context 구현 예시, ReserveForm.js
 ```js
 import { UserIdContext } from './UserContext.js';
 import { UserNameContext } from './UserContext.js';
-... 생략
+...
 const userId = useContext(UserIdContext);
 const userName = useContext(UserNameContext);
 ```
@@ -155,7 +155,7 @@ _app.js에서 Context를 제공하여 하위 ReserveForm 컴포넌트에서 로�
 ![Image](https://github.com/user-attachments/assets/1a6b8144-b66a-4281-92bc-848544665c5f)
 
 ### 1.4 인증토큰 재발급
-로그인이 필요한 페이지에서는 사용의 인증토큰을 헤더값으로 서버에 전달하여 인증, 만료 여부를 확인 후 페이지를 보여주도록 하였다.
+로그인이 필요한 페이지에서는 사용의 인증토큰을 헤더 값으로 서버에 전달하여 인증 토크의 만료 여부를 확인 후 페이지를 보여주도록 하였다.
 
 - 화면 페이지
 ```js
@@ -245,6 +245,7 @@ async function reissueAccessToken()
       {},
       {
         withCredentials: true
+        // 리프레시 토큰은 쿠키로 저장되어 있어 withCredentials을 true로 설정
       }
       )
       .then(function (response) {
@@ -267,7 +268,7 @@ async function reissueAccessToken()
 
 
 ### 1.5 사용자 권한 제어
-Spring Security의 권한 제어 기능을 서버상에 구현 하였으며 해당 기능 확인을 위한 사용자 권한을 확인 후 접근을 제어하는 기능을 구현 하였으며 해당 페이지에서는 권한 제어 기능만 구현하고 간략한 사용자 관리 기능은 Vuejs를 통해 구현 하였다.
+Spring Security의 권한 제어 기능을 서버상에 구현 하였으며 해당 기능 확인을 위한 사용자 권한을 확인 후 접근을 제어하는 기능을 구현 하였으며 해당 페이지에서는 권한 제어 기능만 구현하고 간략한 사용자 관리 기능은 Vuejs를 통해 별개 프로젝트로 구현 하였다.
 
 - 서버의 SecurityConfig 클래스
 ```java
@@ -334,7 +335,7 @@ async function chkAuthor(){
 정상적으로 페이지에 접근 할 수 있다.
 
 ## 2. 게시판
-### 1.1 기본기능 및 페이징, 검색 기능
+### 2.1 기본기능 및 페이징, 검색 기능
 게시판 부분은 기본 CRUD 기능을 구현 하였으며 페이징 처리를 Semantic UI의 Pagination 컴포넌트를 통해 구현 하였다.
 
 - 페이징 기능 동작
@@ -342,16 +343,16 @@ async function chkAuthor(){
 
 ```js
 <Pagination
-          boundaryRange={0}
-          defaultActivePage={1}
-          ellipsisItem={null}
-          firstItem={null}
-          lastItem={null}
-          siblingRange={1}
-          totalPages={TotalPage}
-          onPageChange={(_, { activePage }) => goToPage(activePage)}
-        />
-        // Pagination 컴포넌트에 Props 값을 설정하면 원하는 형태의 페이징 UI를 보여 줄 수 있다.
+  boundaryRange={0}
+  defaultActivePage={1}
+  ellipsisItem={null}
+  firstItem={null}
+  lastItem={null}
+  siblingRange={1}
+  totalPages={TotalPage}
+  onPageChange={(_, { activePage }) => goToPage(activePage)}
+/>
+// Pagination 컴포넌트에 Props 값을 설정하면 원하는 형태의 페이징 UI를 보여 줄 수 있다.
 ```
 또한 게시판의 검색기능 구현에는 react reducer 함수를 사용해 보았다.
 
@@ -368,7 +369,7 @@ const { loading, value, searchKey } = state;
 const timeoutRef = React.useRef()
 const handleSearchChange = (e, data) => {
   clearTimeout(timeoutRef.current)
-  // 최초 요청 시 START_SEARCH 타입으로 searchReducer가 호출된다.
+  // handleSearchChange 호출 시 START_SEARCH 타입으로 searchReducer가 호출된다.
   dispatch({ type: 'START_SEARCH', query: data.value })
   changeSearchValue(data.value);
   setCurrentPage(1);
@@ -430,16 +431,16 @@ const initialState = {
 }
 ```
 reducer를 사용하지 않았다면 3개의 state를 만들고 state를 처리하는 로직을 전부 만들어서 처리해야 하는데 reducer를 통해 loading ,value, searchKey 값을 업데이트하는 로직들을 통합하여 관리 하도록 구현 해보았다. \
-참고 - <https://ko.react.dev/learn/extracting-state-logic-into-a-reducer>
+- 참고 - <https://ko.react.dev/learn/extracting-state-logic-into-a-reducer>
 
 
-### 1.2 첨부 파일 처리
+### 2.2 첨부 파일 처리
 게시판 글쓰기, 수정의 경우 게시글에 첨부 파일을 첨부 하고 이미지 표시, 다운로드 할 수 있는 기능을 추가 했으며 파일 업로드 기능에 react의 useRef를 사용하여 react가 관리하는 DOM 노드에 접근하는 기능을 간단히 구현 해보았다.
 
 - 파일 첨부 동작
 ![Image](https://github.com/user-attachments/assets/ae2dc1f8-c5de-4eb6-9f34-5b62f5f92f2f)
 
-#### 1.2.1 파일 첨부
+#### 2.2.1 파일 첨부
 - BoardWrite.js
 ```js
 // file 타입 DOM노드를 제어하기 위해 useRef를 선언
@@ -479,7 +480,7 @@ const renderFileList = () => (
 
 file input을 hidden으로 숨김 처리하고 fileInputRef1 선언 후 선언한 fileInputRef1 &lt;input ref={fileInputRef1}> 처럼 어트리뷰트로 전달하여 fileInputRef1.current에서 input DOM 노드 읽게하여 fileInputRef1.current.click() 부분으로 click 이벤트를 발생 시키는 방식으로 구현하였다.
 
-#### 1.2.2 파일 전송
+#### 2.2.2 파일 전송
 - BoardWrite.js
 ```js
 const [fileList, setFileList] = useState([]);
@@ -515,7 +516,7 @@ await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/boardSave`,
 ```
 react 렌더링한 요소를 서버로 전송할 경우 기존 html 양식 처럼 form을 submit 하는 형태가 아니기에 FormData 객체를 선언 후 전송할 필드와 데이터를 append 후 POST 요청으로 첨부 파일을 포함하여 데이터를 전송 하도록 구현 하였다.
 
-#### 1.2.3 상세 보기의 첨부파일
+#### 2.2.3 상세 보기의 첨부파일
 - /board/detail/[id].js
 ```js
 useEffect(() => {
@@ -529,7 +530,7 @@ useEffect(() => {
 <p>
 {board.boardContents}
 </p>
-// imageFileList에 이미지 형식 파일만 할당하여 상세보기 화면에서 이미지 파일들만 보여 줄 수 있다.
+// imageFileList에 이미지 형식 파일 데이터만 존재하여 상세보기 화면에서 이미지 파일들만 미리보기를 보여 줄 수 있다.
 {imageFileList.map((imageFiles) => (
   <div key={imageFiles.id}>
     <img src={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/board/download/`+imageFiles.storedFileName} className="ui medium bordered image"/>                     
@@ -570,10 +571,10 @@ BoardServiceImpl.class
 ![Image](https://github.com/user-attachments/assets/fdd102f9-1d0f-4a23-bce1-f4fbefa848d4)
 
 상세보기에서 첨부된 파일의 타입을 체크하여 이미지일 경우 화면상에 보여 줄수 있도록 state를 만들어 react의 filter 함수를 통해 새로운 새로운 배열을 만들어 할당 할 수 있도록 하였다.\
-참고 - <https://ko.react.dev/learn/updating-arrays-in-state>
+- 참고 - <https://ko.react.dev/learn/updating-arrays-in-state>
 
 
-#### 1.2.4 게시글 수정시 첨부파일 처리
+#### 2.2.4 게시글 수정시 첨부파일 처리
 - /board/update/[id].js
 ```js
 ...
@@ -664,7 +665,7 @@ public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
 ![Image](https://github.com/user-attachments/assets/abf91a2a-88ce-41ab-b1f2-29d1f9ad2175)
 
 게시판의 상세보기와 수정 페이지는 nextjs의 동적 라우트로 생성 하여 동적 세그먼트를 통해 접속이 가능 하도록 하였다.\
-참고 - <https://nextjs-ko.org/docs/pages/building-your-application/routing/dynamic-routes>
+- 참고 - <https://nextjs-ko.org/docs/pages/building-your-application/routing/dynamic-routes>
 
 - /board/detail/[id].js
 ```js
@@ -716,7 +717,7 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
 
 ![Image](https://github.com/user-attachments/assets/f361ae7a-294d-42b5-afa6-809d7cf0bc51)
 
-참고 - <https://nextjs-ko.org/docs/pages/building-your-application/data-fetching/get-static-paths>
+- 참고 - <https://nextjs-ko.org/docs/pages/building-your-application/data-fetching/get-static-paths>
 
 
 ## 3. 코멘트
@@ -817,7 +818,7 @@ next build시에 데이터를 가져와 Static Page를 미리 생성하는것을
     ]
 ```
 코멘트의 경우는 게시판 아이디를 부모키로 가지며 또한 덧글 달기로 부모 코멘트와 자식 코멘트를 가질 수 있어 리스트가 트리 형태로 리턴 되기에 재귀 함수를 통해 리스트 컴포넌트를 만들어 화면에 보여 주도록 하였다.\
-참고 -\
+- 참고 -\
 <https://ko.react.dev/learn/updating-objects-in-state>\
 <https://ko.react.dev/learn/updating-arrays-in-state>
 
