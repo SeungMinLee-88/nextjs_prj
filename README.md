@@ -647,7 +647,7 @@ public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
 
   if(boardFileEntityList.size() == 0)
   {
-    // 첨부된 파일이 없는지 확인하여 게시글의 첨부 여부 업데이트 한다.
+    // 첨부된 파일이 없는지 확인하여 게시글의 첨부 여부를 업데이트 한다.
     boardRepository.updatefileAttached(boardId);
   }
 
@@ -659,12 +659,12 @@ public List<BoardFileDTO> fileDelete(Long fileId, Long boardId) {
 게시판의 수정또한 신규로 첨부되는 파일은 FormData 객체에 append하여 처리 되도록 구현 하였고 게시글의 모든 첨부 파일이 삭제되면 게시글의 파일 첨부여부를 false로 업데이트 되도록 하였다.
 
 
-### 1.3 동적 라우팅을 통한 접근
+### 2.3 동적 라우팅을 통한 접근
 ![Image](https://github.com/user-attachments/assets/f03e5b8f-224e-4c67-add9-74df4f0be14d)
 
 ![Image](https://github.com/user-attachments/assets/abf91a2a-88ce-41ab-b1f2-29d1f9ad2175)
 
-게시판의 상세보기와 수정 페이지는 nextjs의 동적 라우트로 생성 하여 동적 세그먼트를 통해 접속이 가능 하도록 하였다.\
+게시판의 상세보기와 수정 페이지는 nextjs의 동적 라우트로 생성 하여 pages/blog/[slug].js url 형태로 접속 가능 하도록 하였다.\
 - 참고 - <https://nextjs-ko.org/docs/pages/building-your-application/routing/dynamic-routes>
 
 - /board/detail/[id].js
@@ -688,7 +688,7 @@ export async function getStaticPaths() {
   const res = await Axios.get(apiUrl);
   const data = res.data;
   return {
-    // 리턴 시 getStaticProps paths로 값을 넘긴다.
+    // 리턴 시 getStaticProps로 paths 값을 넘긴다.
     paths: data.slice(0, 50).map((item) => ({
       params: {
         id: item.id.toString(),
@@ -904,7 +904,7 @@ const handleNextButtonClick = () => {
 if (calendarRef.current) {
   // calendarRef를 통해 FullCalendar 클래스 컴포넌트 객체에 접근하여 현재 FullCalendar의 currentData 값을 가져올 수 있다.
   const currentMonth = moment(calendarRef.current.calendar.currentData.currentDate).format('YYYYMM');
-    // 또한 calendarRef를 통해 getApi()를 호출하여 calendarApi.next() 다음 월로 이동 할 수 있다.
+    // 또한 calendarRef를 통해 getApi()를 호출하여 calendarApi.next()로 다음 월로 이동 할 수 있다.
   const calendarApi = calendarRef.current.getApi();
   calendarApi.next();
   // 서버에서 현재 FullCalendar 보여주고 있는 월의 예약 리스트를 가져오기 위해 toolBarState state를 변경 한다.
