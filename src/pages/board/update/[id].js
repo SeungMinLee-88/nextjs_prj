@@ -96,6 +96,7 @@ const onFormSubmit = async evt => {
   formData.append("boardWriter", boardWriter);
   formData.append("boardContents", boardContents);
 
+  const accessToken = localStorage.getItem("access")
   if(fileUpdateList.length === 0) {
   }else{
     fileUpdateList.forEach((fileUpdate) => {
@@ -107,7 +108,8 @@ const onFormSubmit = async evt => {
     {
       headers: 
       {
-        'Content-Type': 'multipart/form-data' 
+        'Content-Type': 'multipart/form-data' ,
+        'access' : accessToken
       }
     })
   .then(function (response) {
