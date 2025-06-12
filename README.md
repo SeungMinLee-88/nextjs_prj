@@ -244,7 +244,7 @@ async function reissueAccessToken()
       )
       .then(function (response) {
         if(response.status === 200){
-          // 리프레시 토큰이 유효하다면 헤더 데이터로 새로운 인증 토큰과 쿠키 데이터로  리프레시 토큰이 발급된다.
+          // 리프레시 토큰이 유효하다면 헤더 데이터로 새로운 인증 토큰과 쿠키 데이터로 리프레시 토큰이 발급된다.
           localStorage.removeItem("access");
           localStorage.setItem("access", response.headers.access);
         }
@@ -424,9 +424,7 @@ const initialState = {
   searchKey: ''
 }
 ```
-reducer를 사용하지 않았다면 3개의 state를 만들고 각 state의 변경에 대한 이벤트 핸들러 만들어 구현해야 하는데 reducer를 기능을 통해 loading ,value, searchKey 값을 업데이트하는 로직들을 통합하여 관리 하도록 구현 해보았다.
-- 참고 - <https://ko.react.dev/learn/extracting-state-logic-into-a-reducer>
-
+reducer를 사용하지 않았다면 3개의 state를 만들고 각 state의 변경에 대한 이벤트 핸들러 만들어 구현해야 하는데 reducer를 기능을 통해 loading ,value, searchKey 값을 업데이트하는 로직들을 통합하여 관리 가능하다.
 
 ### 2.2 첨부 파일 처리
 게시판 글쓰기, 수정의 경우 게시글에 첨부 파일을 첨부 하고 이미지 표시, 다운로드 할 수 있는 기능을 추가 했으며 파일 업로드 기능에 react의 useRef를 사용하여 react가 관리하는 DOM 노드에 접근하는 기능을 간단히 구현 해보았다.
@@ -879,7 +877,7 @@ async function getData() {
       },
       params: {
         reserveDate: toolBarState,
-        // 예약 리스트를 요청하는 api url에 toolBarState 값을 전달하여 원하는 월에 해당하는 예약 리스트만 가져오게 하였다.
+        // 예약 리스트를 요청하는 api url에 년월(ex- 202507) 값을 전달하여 원하는 월에 해당하는 예약 리스트만 가져오게 하였다.
         reserveUserId: userId
       },
     }
